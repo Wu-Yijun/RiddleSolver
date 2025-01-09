@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Invitation to Puzzles | 游戏邀请函</title>
+    <style>
+      #invitation {
+        width: 60vw;
+        height: 80vh;
+        align-content: center;
+        margin: auto;
+        font-size: 1.5em;
+      }
+
+      #title {
+        text-align: center;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+      }
+
+      #invitation {
+        max-height: 80vh;
+        transition: max-height 1s ease-in-out;
+        overflow-y: hidden;
+      }
+
+      #invitation > p {
+        text-indent: 2em;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        /* font-family: 'Courier New', Courier, monospace; */
+      }
+
+      #signature {
+        border-top: 1px solid black;
+        padding-top: 1em;
+      }
+
+      #signature > p {
+        text-align: right;
+        font-style: italic;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 0.2em;
+        margin-bottom: 0.2em;
+      }
+
+      .hv0:hover {
+        color: rgb(9, 0, 184);
+      }
+      .hv0 {
+        cursor: help;
+      }
+      .hv1:hover {
+        color: rgb(0, 137, 34);
+      }
+      #info-box {
+        position: absolute;
+        padding: 10px;
+        background-color: #f0f0f0dd;
+        border: 1px solid #ccc;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        display: none; /* 初始隐藏 */
+        max-width: 25em;
+      }
+
+      #start {
+        text-align: center;
+        font-family:
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Oxygen,
+          Ubuntu,
+          Cantarell,
+          "Open Sans",
+          "Helvetica Neue",
+          sans-serif;
+        font-size: 2em;
+        cursor: pointer;
+        background-color: #ececec;
+        padding: 0.5em;
+        margin-top: 1em;
+        border-radius: 0.5em;
+        border: #6d6d6d 1px solid;
+        margin: auto;
+        max-width: 15em;
+        margin-top: 1vh;
+        transition: margin-top 1s ease-in-out;
+      }
+    </style>
+    <script src="./notes.js"></script>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="info-box"></div>
+    <div id="invitation">
+      <h1
+        id="title"
+        title="邀请函 (绿色表示有吐槽, 可点击查看)"
+        class="hv0 hv1"
+        hv1="当年还挺注重仪式感的, 专门搞了个邀请函"
+      >
+        Invitation
+      </h1>
+      <p
+        title="恭喜! 您现在有机会参加精彩非凡的解谜游戏. (蓝色表示有中文翻译)"
+        class="hv0"
+      >
+        Congratulations! You now have the permission to take part in the
+        Magnificent Riddle-Solving Game.
+      </p>
+      <p>
+        <span
+          title="如果你曾对高中生活报有任何幻想, 我向你保证, 不久你将对枯燥乏味的日常感到失望."
+          class="hv0"
+        >If you ever had any fancy illustration with high school life, I'm sure
+          you'll soon feel disappointed about the dull routine.</span>
+        <span
+          title="我将在此向你伸出援手, 为你的校园生活添入一份色彩. 期待见证你的勇气与智慧! 享受这份大礼吧."
+          class="hv0"
+        >But here I'm offering you a chance to change your school into a
+          fantastic world. Your courage and wisdom will be highly appreciated.
+          Do enjoy yourself.</span>
+      </p>
+      <p title="期待您的参与" class="hv0">We welcome your participant.</p>
+      <div id="signature">
+        <p
+          title="游戏制作委员会"
+          class="hv0 hv1"
+          hv1="当时想的一个有点中二的自称, 隐去了自身信息, 还显得神秘莫测"
+        >
+          The Game's Designers
+        </p>
+        <p
+          title="2021年6月1日"
+          class="hv0 hv1"
+          hv1="这是此解密游戏完成的日期, 距离高考只有一周, 我心真大. 乐"
+        >
+          Jun. 1, 2021
+        </p>
+      </div>
+    </div>
+    <footer>
+      <div
+        id="start"
+        class="hv0"
+        title="开始游戏 (纸质邀请函没有此按钮)"
+      >
+        Start Game!
+      </div>
+      <script>
+        document.getElementById("start").addEventListener("click", function () {
+          document.getElementById("invitation").style.maxHeight = "0";
+          document.getElementById("start").style.marginTop = "40vh";
+          setTimeout(() => {
+            window.location.href = "./Letter-to-Riddolver.html";
+          }, 500);
+        });
+      </script>
+    </footer>
+  </body>
+</html>

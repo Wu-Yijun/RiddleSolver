@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>动态文本框</title>
+  <style>
+    #info-box {
+      position: absolute;
+      padding: 10px;
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+      display: none; /* 初始隐藏 */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="pop" style="width: 100px; height: 100px; background-color: lightblue; text-align: center; line-height: 100px;">
+    点击这里
+  </div>
+
+  <div id="info-box"></div> <!-- 文本框容器 -->
+
+  <script>
+    const popElement = document.getElementById('pop');
+    const infoBox = document.getElementById('info-box');
+
+    popElement.addEventListener('click', function(event) {
+      // 获取鼠标点击位置
+      const mouseX = event.pageX;
+      const mouseY = event.pageY;
+
+      // 设置文本框位置
+      infoBox.style.left = `${mouseX + 10}px`; // 鼠标右侧 10px
+      infoBox.style.top = `${mouseY + 10}px`;  // 鼠标下方 10px
+      infoBox.style.display = 'block'; // 显示文本框
+      infoBox.innerText = '这里是弹出信息框！'; // 显示信息
+    });
+
+    // 监听鼠标移出 pop 元素
+    popElement.addEventListener('mouseleave', function() {
+      setTimeout(() => {
+        // 等待用户完成鼠标移出动作后移除信息框
+        if (!infoBox.matches(':hover')) {
+          infoBox.style.display = 'none'; // 隐藏信息框
+        }
+      }, 100);
+    });
+
+    // 监听鼠标移出信息框本身
+    infoBox.addEventListener('mouseleave', function() {
+      infoBox.style.display = 'none'; // 隐藏信息框
+    });
+  </script>
+
+</body>
+</html>

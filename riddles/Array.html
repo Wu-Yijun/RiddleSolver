@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>01. Array | 序列</title>
+    <link rel="stylesheet" href="./style.css">
+    <id>01</id>
+    <script src="./notes.js"></script>
+    <script src="./verify.js"></script>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="info-box"></div>
+    <div id="main">
+      <h1
+        class="title hv0 hv1"
+        title="迷题01 序列"
+        hv1="这个放在第一的首字母缩写是 RA, 同样是 Rimor Aluria 的缩写, 当时用 Array 是有私心的 XD"
+      >
+        <span class="initial">R</span>iddle 01&emsp;&emsp;<span class="initial"
+        >A</span>rray
+      </h1>
+      <h3 class="title">
+        如果你觉得此信与你无关, 请将其以原样放回原处. 谢谢.
+      </h3>
+      <div class="section">
+        <h4
+          class="title hv1"
+          hv1="实际纸质版的排版是两栏, 是有考虑到宽度和布局问题, 在网页版中就没必要引入额外的负担了."
+        >
+          1. 找规律
+        </h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Example</th>
+              <th>Word-list</th>
+              <th>校验值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td
+                class="hv1"
+                hv1="不得不吐槽的就是 apple 不是唯一组合, 还有 lepap 和 palep 都有同样的校验值, 但它们不是合法英文单词."
+              >
+                aelpp
+              </td>
+              <td>154</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>boy</td>
+              <td>107</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>act</td>
+              <td>65</td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td>dgo</td>
+              <td>55</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="section">
+        <h4 class="title">
+          2. 实际运用
+        </h4>
+        <table>
+          <thead>
+            <tr>
+              <th>Contents</th>
+              <th>Word-list</th>
+              <th>校验值</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>check</td>
+              <td>ccehk</td>
+              <td>101</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>eth</td>
+              <td>51</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>efir</td>
+              <td>98</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>atp</td>
+              <td>70</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>aceinnort</td>
+              <td>514</td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>aebnry</td>
+              <td>259</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="section">
+        <h4 class="title">
+          3. 灵活运用
+        </h4>
+        <p class="encoded">
+          deIins(180) cdeklo(144) airsst(302) adn(41) no(43) opt(98) floor(225).
+        </p>
+      </div>
+
+      <div id="quotes">
+        <p>最高者之到达它的高度,</p>
+        <p></p>
+        <p>从最低处开始.</p>
+      </div>
+
+      <div class="section">
+        <h4 class="title">
+          Tips
+        </h4>
+        <ol class="encrypted">
+          <li><p>这里是提示, 是为了降低谜题难度而设置的. 你大可以不看.</p></li>
+          <li>
+            <p
+              class="hv0 hv1"
+              title="提示以英文手写体给出, 让它难以直接阅读."
+              hv1="在纸质版中, 我们无法控制是否显示提示, 只能设置成这样难以辨认的形式, 就相当于无法直接阅读了."
+            >
+              Tips are often given in forms of English. The font makes it hard
+              to read.
+            </p>
+          </li>
+          <li>
+            <p
+              class="hv0"
+              title="计算每个字母在字母表中位置, 也就是 ABC 变成 123. 再分别乘此字母在单词中的位置, 相加求和."
+            >
+              'A' is 1, 'B' is 2, and so on.<br>
+              Time the order of each letter with its number.<br>
+              And then plus then together.
+            </p>
+          </li>
+          <li>
+            <p
+              class="hv0 hv1 hv2"
+              title="(已加密) (可点击查看解密后的结果) (双击以查看翻译)"
+              hv1="(双击以查看翻译) Tips are often given in forms of hidden hints."
+              hv2="(译文) 提示通常以隐藏的形式给出."
+            >
+              ipsT(162) aer(52) efnot(177) eginv(181) in(37) fmors(237) fo(27)
+              ddehin(163) hinst(243).
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div id="tags">
+        <p>
+          <span class="tag-name hv0" title="编号">ID:</span>
+          01
+        </p>
+        <p>
+          <span class="tag-name hv0" title="代号">Code:</span>
+          <span
+            class="hv0"
+            title="从简入深"
+          >Easy Start</span>
+        </p>
+      </div>
+
+      <div id="checkers" both="true">
+        <h4 class="title hv1" hv1="从这里开始, 都是网页版特有的.">
+          输入并检查答案
+        </h4>
+        <div class="checker-box">
+          <div class="checker" answer="Check the fire tap container nearby">
+            <p class="answer-info inline hv0" title="注意标点, 本句没有句点">
+              Answer
+            </p>
+            <div contenteditable="true" class="answer"></div>
+            <div class="button">Check</div>
+          </div>
+          <p
+            class="answer-notes inline hv1"
+            hv1="1. container 这个单词打乱后有些难想到&#10;2. 还有'附近'是什么鬼, 很好找吗? 当时怎么想的!"
+          >
+            下一个迷题藏在消防栓附近
+          </p>
+        </div>
+        <div class="checker-box">
+          <div class="checker" answer="Inside locked stairs and on top floor.">
+            <p class="answer-info inline h0" title="注意标点, 本句有句点">
+              Answer
+            </p>
+            <div contenteditable="true" class="answer"></div>
+            <div class="button">Check</div>
+          </div>
+          <p
+            class="answer-notes inline hv1"
+            hv1="1. 不是我怎么没说是体育馆啊, 鬼知道要去哪找.&#10;2. 还有整个句子的语言表达很变扭啊!"
+          >
+            藏在体育馆最上层上锁的楼梯中.
+          </p>
+        </div>
+        <div id="checkers-notes">
+          <p>
+            这一题是一个简单的引入, 难度不大, 但需要 Riddolver
+            具有一定的逻辑能力, 此外, 还需要有能挑战学校规则的勇气, <span
+              class="hv1"
+              hv1="其实我没记错的话起始信附带了这个钥匙, 所以大概率你不用偷钥匙"
+            >如果没能私自开启锁着的门</span>, 也无法继续进行游戏.
+          </p>
+          <p
+            class="hv1"
+            hv1="但是后面好像除了最后一条加密的提示别的地方都没用到, 因为我们出题的时间不多了."
+          >
+            此外, 这个校验值在设计之初是很有用的,
+            它可以辅助验证你的答案是否正确.
+          </p>
+          <p>
+            在网页版中, 就不设置这些障碍了,
+            你甚至可以通过反复检查答案的匹配度来试出答案. 那么, 话不多说,
+            让我们继续下面的迷题吧.
+          </p>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div class="l button" onclick="window.location.href='./list.html'">
+          <p>
+            &lt;&lt;&lt; 迷题列表
+          </p>
+        </div>
+        <div class="r button next-riddle" riddle="Law">
+          <p>
+            12 &gt;&gt;&gt;
+          </p>
+        </div>
+        <div class="button next-riddle" riddle="Number">
+          <p>
+            15 &gt;&gt;&gt;
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

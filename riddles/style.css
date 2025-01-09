@@ -1,0 +1,330 @@
+@font-face {
+  font-family: "启功字体繁体";
+  src: url("./启功字体繁体.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+#main {
+  width: 70vw;
+  max-width: 980px;
+  min-height: 80vh;
+  align-content: center;
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.title {
+  text-align: center;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-weight: lighter;
+}
+.initial {
+  font-weight: bold;
+  font-size: larger;
+}
+h4.title {
+  font-weight: bold;
+}
+
+#main {
+  transition: height 1s ease-in-out;
+}
+
+#main > p {
+  text-indent: 2em;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.section {
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-family:
+    "Times New Roman",
+    Times,
+    serif,
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+.section > p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-indent: 2em;
+}
+p.section-title {
+  text-indent: 0;
+  /* font-weight: bold;
+  font-size: 1.2em; */
+}
+
+#checkers {
+  border-top: 2px solid black;
+  margin-top: 2em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  width: -webkit-fill-available;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+.checker-box {
+  margin-bottom: 1em;
+}
+.checker {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  column-gap: 1em;
+}
+.checker > .button {
+  padding: 0.2em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  /* margin: 1em; */
+}
+.checker > .answer {
+  max-width: calc(60% - 100px);
+  min-width: calc(30% + 50px);
+  width: auto;
+  height: auto;
+  min-height: 1em;
+  border-bottom: black 1px solid;
+  margin: auto;
+}
+.checker-box .answer-notes {
+  display: none;
+}
+
+p.inline {
+  padding: 0px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.answer-notes {
+  font-size: 0.8em;
+  margin-left: 2em;
+  font-style: italic;
+}
+.answer-notes::before {
+  content: "*";
+}
+#checkers-notes::before {
+  content: "作者的话:";
+  font-weight: bold;
+}
+#checkers-notes > p {
+  text-indent: 2em;
+  margin: 0;
+  padding: 0;
+}
+#checkers-notes {
+  display: none;
+  font-size: 0.9em;
+}
+
+#footer {
+  border-top: 1px solid black;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: inline-flex;
+  flex-wrap: wrap;
+  width: -webkit-fill-available;
+  font-style: italic;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  column-gap: 2em;
+}
+#footer > .l {
+  text-align: left;
+  margin-right: auto;
+}
+#footer > .r {
+  text-align: right;
+  margin-left: auto;
+}
+#footer p {
+  margin: 0.5em;
+}
+.button,
+.button.next-riddle.clickable {
+  user-select: none;
+  border-radius: 0.5em;
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.5em;
+  cursor: pointer;
+  transition: background-color 0.5s;
+}
+.button:hover,
+.button.next-riddle.clickable:hover {
+  cursor: pointer;
+  background-color: #c7f6ce;
+  /* background-color: #c7d3f6; */
+}
+.button.next-riddle {
+  cursor: no-drop;
+  background-color: #eee;
+}
+.button.next-riddle:hover {
+  cursor: no-drop;
+  background-color: #eee;
+}
+
+#quotes {
+  font-family:
+    "启功字体繁体",
+    "楷体",
+    "KaiTi",
+    "Trebuchet MS",
+    "Lucida Sans Unicode",
+    "Lucida Grande",
+    "Lucida Sans",
+    Arial,
+    sans-serif;
+  font-weight: bolder;
+  font-size: 2.5em;
+  border-top: 3px solid rgb(107, 137, 237);
+  border-bottom: 3px solid rgb(107, 137, 237);
+  color: rgb(107, 137, 237);
+  overflow-x: hidden;
+}
+#quotes > p {
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
+}
+#quotes > p:nth-child(1) {
+  text-indent: 2em;
+}
+#quotes > p:nth-child(2) {
+  text-indent: 5em;
+}
+#quotes > p:nth-child(3) {
+  text-indent: 7em;
+}
+
+#tags {
+  font-family: "Comic Sans MS";
+  text-align: end;
+  margin-bottom: 2em;
+}
+#tags .tag-name {
+  font-weight: bold;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  /* width: 50%; */
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family:
+    "Arial",
+    Times,
+    serif,
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+th, td {
+  border: 1px solid #6d6d6d;
+  padding: 8px;
+}
+th {
+  background-color: #ccc;
+  font-weight: bold;
+}
+tr > th:first-child {
+  background-color: #aaa;
+}
+td {
+  background-color: #fff;
+}
+tr > td:first-child {
+  background-color: #ddd;
+}
+
+p.encoded, span.encoded {
+  font-family:
+    "Courier New",
+    Courier,
+    monospace,
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+  text-indent: 0em;
+  font-weight: bold;
+  font-style: italic;
+  font-size: smaller;
+}
+
+.encrypted, .encrypted p {
+  font-family: "华文行楷";
+  font-weight: normal;
+}
+ol.encrypted {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-weight: bolder;
+}
+
+.hv0 {
+  text-decoration: underline #55a4;
+  cursor: help;
+}
+.hv1 {
+  text-decoration: underline #5a54;
+  cursor: alias;
+}
+.hv2 {
+  text-decoration: underline rgba(170, 156, 85, 0.267);
+  cursor: pointer;
+}
+.hv0:hover {
+  color: rgb(9, 0, 184);
+}
+.hv1:hover {
+  color: rgb(0, 137, 34);
+}
+.hv2:hover {
+  color: rgb(137, 116, 0);
+}
+#info-box {
+  position: absolute;
+  padding: 10px;
+  background-color: #f0f0f0dd;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  display: none; /* 初始隐藏 */
+  max-width: 25em;
+}
