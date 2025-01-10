@@ -1,167 +1,180 @@
-/**
- * This is the helper funtion that decode nizi code mappping relation
- */
-class NiziDecoder {
-  // be careful that size is half size of the table
-  size: number;
-  // from -size to size [y][x]
-  private table: number[][];
-  constructor(size: number = 100) {
-    // init
-    this.size = size;
-    this.table = Array.from(
-      { length: size * 2 + 1 },
-      (_) => Array.from({ length: size * 2 + 1 }, (_) => 0),
-    );
-    // get digits
-    const digits = this.sqrt3_2((size * 2 + 1) ** 2);
-    // fill table
-    let x = 0, y = 0;
-    const dir = [1, 0];
-    let step = 0;
-    let index = 0, stride = 1;
-    while (Math.abs(x) <= size && Math.abs(y) <= size) {
-      // console.log(x, y, step, index, stride);
-      this.table[y + size][x + size] = digits[step];
-      step += 1;
-      index += 1;
-      x += dir[0];
-      y += dir[1];
-      if (index === stride) {
-        const tmp = dir[1];
-        dir[1] = dir[0];
-        dir[0] = -tmp;
-        index = 0;
-        if (dir[0] === 0) {
-          stride += 1;
+const word_frequency_path = "./designer/assets/character_frequency.txt";
+const nizi_code_path = "./designer/assets/nizi_code.txt";
+const code0: number = "A".charCodeAt(0) - 1;
+
+interface HuffmanNode {
+  // the frequency of the node
+  freq: number;
+  // the characters that the node represents
+  chars: number[];
+  // left child's frequency is less equal than right child's frequency
+  left?: HuffmanNode;
+  right?: HuffmanNode;
+}
+
+class NiziCode {
+  private readonly freq: number[];
+  private tree: HuffmanNode;
+  private codes: string[];
+  constructor(path: string, type: "freq" | "code" = "freq") {
+    if (type === "freq") {
+      const data = Deno.readTextFileSync(path);
+      this.freq = data.trim().split("\n").map((line) =>
+        parseFloat(line.trim().split(" ")[1].trim())
+      );
+      this.tree = this.build();
+
+      const dest: [string, string][] = [];
+      this.get_tree(dest);
+
+      this.codes = dest.sort((a, b) => a[0].localeCompare(b[0])).map(
+        ([_, code]) => code,
+      );
+    } else {
+      const data = Deno.readTextFileSync(path);
+      this.codes = data.trim().split("\n").map((s) => s.trim().split(" ")[1]);
+      this.freq = [];
+      this.tree = this.build_tree();
+    }
+  }
+  build(): HuffmanNode {
+    const nodes: HuffmanNode[] = this.freq.map((freq, index): HuffmanNode => {
+      return { freq, chars: [index] };
+    });
+    function find_least_two(): [number, number] {
+      let least = Infinity;
+      let second = Infinity;
+      let least_index = -1;
+      let second_index = -1;
+      for (let i = 0; i < nodes.length; i++) {
+        if (nodes[i].freq < least) {
+          second = least;
+          second_index = least_index;
+          least = nodes[i].freq;
+          least_index = i;
+        } else if (nodes[i].freq < second) {
+          second = nodes[i].freq;
+          second_index = i;
         }
       }
+      return [least_index, second_index];
     }
+    while (nodes.length > 1) {
+      const [left, right] = find_least_two();
+      // console.log(left, right);
+      const new_node = {
+        freq: nodes[left].freq + nodes[right].freq,
+        chars: nodes[left].chars.concat(nodes[right].chars),
+        left: nodes[left],
+        right: nodes[right],
+      };
+      nodes.splice(Math.max(left, right), 1);
+      nodes.splice(Math.min(left, right), 1);
+      nodes.push(new_node);
+    }
+    return nodes[0];
   }
-  private sqrt_bv(n: bigint, len: bigint): bigint {
-    let sqrt = BigInt(0);
-    let shift = len;
-    while (shift >= BigInt(0)) {
-      const tmp = ((sqrt << BigInt(1)) + (BigInt(1) << BigInt(shift))) <<
-        BigInt(shift);
-      if (tmp <= n) {
-        sqrt += BigInt(1) << BigInt(shift);
-        n -= tmp;
+  build_tree(): HuffmanNode {
+    const tree: HuffmanNode = { freq: 109, chars: [] };
+    function reach_node(code: string, from: HuffmanNode = tree): HuffmanNode {
+      if (code.length === 0) {
+        return from;
       }
-      shift -= BigInt(1);
+      if (code[0] === "0") {
+        if (from.left === undefined) {
+          from.left = { freq: from.freq / 2, chars: [] };
+        }
+        return reach_node(code.slice(1), from.left!);
+      } else {
+        if (from.right === undefined) {
+          from.right = { freq: from.freq / 2, chars: [] };
+        }
+        return reach_node(code.slice(1), from.right!);
+      }
     }
-    return sqrt;
-  }
-  private sqrt3_2(digits: number): number[] {
-    // this is also sqrt(6 * 2 ^ 2(digits - 1))
-    const num = BigInt(6) << BigInt(2 * (digits - 2));
-    const res = this.sqrt_bv(num, BigInt(digits - 1));
-    return res.toString(2).split("").map((x) => parseInt(x));
-  }
-  public decode(x: number, y: number, len: number): number[] | null {
-    if (
-      (x < -this.size || x + len - 1 > this.size) ||
-      (y < -this.size || y > this.size)
-    ) {
-      return null;
+    for (let i = 0; i < 26; i++) {
+      reach_node(this.codes[i]).chars.push(i);
     }
-    return this.table[-y + this.size].slice(x + this.size, x + this.size + len);
+    return tree;
   }
-  public default_rule(): Map<string, [number, number, number]> {
-    const rule = new Map<string, [number, number, number]>();
-    rule.set("A", [-21, -21, 4]);
-    rule.set("B", [-13, -5, 6]);
-    rule.set("C", [-21, 49, 5]);
-    rule.set("D", [22, 11, 5]);
-    rule.set("E", [4, -6, 3]);
-    rule.set("F", [42, 19, 5]);
-    rule.set("G", [3, 31, 6]);
-    rule.set("H", [-5, 15, 4]);
-    rule.set("I", [24, 11, 4]);
-    rule.set("J", [-59, 34, 8]);
-    rule.set("K", [72, -47, 7]);
-    rule.set("L", [-18, -22, 5]);
-    rule.set("M", [-47, -37, 5]);
-    rule.set("N", [5, 22, 4]);
-    rule.set("O", [-29, -16, 4]);
-    rule.set("P", [18, 48, 6]);
-    rule.set("Q", [-11, -98, 8]);
-    rule.set("R", [-1, 11, 4]);
-    rule.set("S", [-4, 19, 4]);
-    rule.set("T", [-17, 12, 3]);
-    rule.set("U", [-29, -42, 5]);
-    rule.set("V", [-29, 1, 7]);
-    rule.set("W", [-2, -42, 5]);
-    rule.set("X", [7, 2, 8]);
-    rule.set("Y", [42, -33, 6]);
-    rule.set("Z", [-43, -4, 8]);
-    return rule;
-  }
-  public default_mapping_relation(): MappingRelation {
-    const rule = this.default_rule();
-    const encode = new Map<string, string>();
-    const decode = new Map<string, string>();
-    for (const [character, [x, y, len]] of rule) {
-      const rule: string = this.decode(x, y, len)!.join("");
-      encode.set(character, rule);
-      decode.set(rule, character);
+
+  get_tree(
+    dest: [string, string][],
+    node: HuffmanNode = this.tree,
+    pre: string = "",
+  ) {
+    if (node.left) {
+      this.get_tree(dest, node.left, pre + "0");
     }
-    return { encode, decode };
+    if (node.right) {
+      this.get_tree(dest, node.right, pre + "1");
+    }
+    if (node.chars.length === 1) {
+      dest.push([String.fromCharCode(node.chars[0] + code0 + 1), pre]);
+    }
+  }
+  print_tree() {
+    const dest: [string, string][] = [];
+    this.get_tree(dest);
+    dest.sort((a, b) => a[0].localeCompare(b[0]));
+    console.log(dest);
+  }
+
+  binary(code: string): string {
+    let res = "";
+    let node = this.tree;
+    for (let i = 0; i < code.length; i++) {
+      if (code[i] !== "0" && code[i] !== "1") {
+        return "Invalid(" + code + ")";
+      }
+      if (code[i] === "0") {
+        node = node.left!;
+      } else {
+        node = node.right!;
+      }
+      if (node.chars.length === 1) {
+        res += String.fromCharCode(node.chars[0] + code0 + 1);
+        node = this.tree;
+      }
+    }
+    if (node !== this.tree) {
+      res += "[" + String.fromCharCode(...node.chars.map((s) =>
+        s + code0 + 1
+      )) + "]";
+    }
+    return res;
+  }
+  to_binary(num: number): string {
+    if (num > 0) {
+      return num.toString(2);
+    } else {
+      return (-num).toString(2).split("").map((s) => s === "0" ? "1" : "0")
+        .join("");
+    }
+  }
+  word(code: number): string {
+    return this.binary(this.to_binary(code)).toLowerCase();
+  }
+  sentence(line: string): string {
+    return line.replaceAll(/(?<![0-9+])-?\d+/g, (s) => this.word(parseInt(s)));
   }
 }
 
-interface MappingRelation {
-  // from character A-Z to Nizi code(Binary)
-  encode: Map<string, string>;
-  // from binary to A-Z
-  decode: Map<string, string>;
-}
-
-/**
- * This is the Nizi code to decode sentencces.
- * The mapping rule is generated by above decoder.
- * Once you got a mapping relation, you do not need to generate it again.
- */
-class Nizi {
-  map: MappingRelation;
-  constructor() {
-    this.map = new NiziDecoder().default_mapping_relation();
-  }
-}
-
-Deno.test("NiziDecoder", () => {
-  // const decoder = new NiziDecoder();
-  // console.log(decoder.decode(0, 0, 4));
-  // console.log(decoder.decode(0, 0, 5));
-  // console.log(decoder.decode(0, 0, 6));
-  // console.log(decoder.decode(0, 0, 7));
-  // console.log(decoder.decode(0, 0, 8));
-  // console.log(decoder.decode(0, 0, 9));
-  const nizi = new Nizi();
-  console.log(nizi);
+Deno.test("nizi code freq", () => {
+  const nizi = new NiziCode(word_frequency_path, "freq");
+  nizi.print_tree();
 });
 
-// const nizi = new NiziDecoder(1);
-// console.log(nizi);
+Deno.test("nizi code", () => {
+  const nizi = new NiziCode(nizi_code_path, "code");
+  nizi.print_tree();
+  console.log(nizi.binary("11110100000000011010"));
+  console.log(nizi.word(-108357));
+  console.log(nizi.sentence("体育馆一楼: 233175 58242 265251616 -53989 -19807 377683543 96384."));
+  console.log(nizi.sentence("教学楼: 233175 58242 265251616 -53989 -19807 +401."));
+});
 
-// Deno.test("sqrt", () => {
-//   function sqrt_bv(n: bigint, len: bigint): bigint {
-//     let sqrt = BigInt(0);
-//     let shift = len;
-//     while (shift >= BigInt(0)) {
-//       const tmp = ((sqrt << BigInt(1)) + (BigInt(1) << BigInt(shift))) <<
-//         BigInt(shift);
-//       if (tmp <= n) {
-//         sqrt += BigInt(1) << BigInt(shift);
-//         n -= tmp;
-//       }
-//       shift -= BigInt(1);
-//     }
-//     return sqrt;
-//   }
-//   const len = 200;
-//   const num = BigInt(6) << BigInt(2 * (len - 2));
-//   const res = sqrt_bv(num, BigInt(len - 1));
-//   console.log(res.toString(), res.toString(2));
-//   console.log(Math.sqrt(Number(num)));
-// });
+Deno.test("web of data", () => {
+  const nizi = new NiziCode(nizi_code_path, "code");
+  console.log(nizi.sentence("24038 -1807455 778 256065152 -7912 86 -237865."));
+});

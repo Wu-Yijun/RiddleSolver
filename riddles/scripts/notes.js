@@ -32,8 +32,8 @@ function main() {
       infoBox.style.display = "none"; // 隐藏信息框
     });
 
-    if(dom.getAttribute("title") === null){
-      dom.setAttribute("title", "(点击以查看吐槽)")
+    if (dom.getAttribute("title") === null) {
+      dom.setAttribute("title", "(点击以查看吐槽)");
     }
   }
   for (const dom of hv2s) {
@@ -65,13 +65,12 @@ function main() {
     infoBox.addEventListener("mouseleave", function () {
       infoBox.style.display = "none"; // 隐藏信息框
     });
-  }
-  
 
-  if(dom.getAttribute("title") === null ){
-    dom.setAttribute("title", "(双击以查看提示)");
-  }else if(dom.getAttribute("title") === "(点击以查看吐槽)"){
-    dom.setAttribute("title", "(点击以查看吐槽)(双击以查看提示)");
+    if (dom.getAttribute("title") === null) {
+      dom.setAttribute("title", "(双击以查看提示)");
+    } else if (dom.getAttribute("title") === "(点击以查看吐槽)") {
+      dom.setAttribute("title", "(点击以查看吐槽)(双击以查看提示)");
+    }
   }
 
   console.log("notes.js loaded");

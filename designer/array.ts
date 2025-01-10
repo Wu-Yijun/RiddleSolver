@@ -1,5 +1,8 @@
 const code0: number = "A".charCodeAt(0) - 1;
-const word_list_path = "./designer/assets/wordlist.txt";
+const word_list_path = [
+  "./designer/assets/word_list.txt",
+  "./designer/assets/CollinsScrabbleWords.txt",
+];
 
 class ArrayEncoder {
   static encode(word: string): string {
@@ -35,14 +38,23 @@ class ArrayEncoder {
     res += sentence.slice(pos);
     return res;
   }
+
+  static to_code(word: string): number[] {
+    return word.split("").map((s) => s.charCodeAt(0) - code0);
+  }
+  static from_code(code: number[]): string {
+    return code.map((i) => String.fromCodePoint(i + code0)).join("");
+  }
 }
 class ArrayDecoder {
   // combination -> (val -> methods)
   private val: Map<string, Map<number, string[]>>;
   private word_list: Set<string>;
+  private word_trait_list: Map<string, string[]>;
 
   constructor() {
     this.word_list = new Set();
+    this.word_trait_list = new Map();
     const val: [string, Map<number, string[]>][] = [];
     for (let i0 = 1; i0 <= 26; i0++) {
       for (let i1 = i0; i1 <= 26; i1++) {
@@ -89,10 +101,21 @@ class ArrayDecoder {
       }
     }
   }
+  /**
+   * Decode all possible word.
+   * @param word a single **UPPERCASE** word to decode
+   * @param value the value of the encode
+   * @returns the possible word list with the same alphabetic combination and code.
+   */
   word(word: string, value: number): string[] {
     const sorted = word.toUpperCase().split("").sort().join("");
     return this.test_decode(sorted, value);
   }
+  /**
+   * decode all codes in a sentence with words in dictionary.
+   * @param sentence An encoded sentence with forms of `word(code)` to decode.
+   * @returns The decoded sentence.
+   */
   sentence(sentence: string): string {
     const line = sentence.toUpperCase();
     const regex = /([A-Z]+)\(([0-9]+)\)/g;
@@ -144,15 +167,163 @@ class ArrayDecoder {
     // console.log(word, value, result.length);
     return result;
   }
-  filter(words: string[]): string[] {
-    if (this.word_list.size === 0) {
-      // read from file
-      const list = Deno.readTextFileSync(word_list_path).trim().split("\n").map(
+  public read_words(index: number = 0) {
+    // read from file
+    const list = Deno.readTextFileSync(word_list_path[index]).trim().split("\n")
+      .map(
         (s) => s.trim().toUpperCase(),
       );
-      this.word_list = new Set(list);
+    this.word_list = new Set(list);
+  }
+
+  private build_word_traits() {
+    if (this.word_list.size === 0) {
+      this.read_words();
+    }
+    for (const word of this.word_list) {
+      const code = ArrayEncoder.word(word);
+      const key = "(" + code + "," + word.length + ")";
+      if (this.word_trait_list.has(key)) {
+        this.word_trait_list.get(key)!.push(word);
+      } else {
+        this.word_trait_list.set(key, [word]);
+      }
+    }
+  }
+  filter(words: string[]): string[] {
+    if (this.word_list.size === 0) {
+      this.read_words();
     }
     return words.filter((word) => this.word_list.has(word));
+  }
+  secondary(primary: string): string {
+    // {Taaghiilnorrssy: (139,4) (47,2) (112,4) (220,5)}.
+    const regex1 = /\{([A-Z]+)\:((\s?\([0-9]+,\s?[0-9]+\))+)\}/g;
+    const regex2 = /\(([0-9]+),\s?([0-9]+)\)/g;
+    let match1, match2;
+    const line = primary.toUpperCase();
+
+    let res = "";
+    let pos = 0;
+    while ((match1 = regex1.exec(line)) !== null) {
+      console.log(match1);
+      res += primary.slice(pos, match1.index);
+      const words = match1[1];
+      pos += match1[0].length;
+
+      let offset = 0;
+      const decoded: string[] = [];
+      while ((match2 = regex2.exec(match1[2])) !== null) {
+        const val = parseInt(match2[1]);
+        const len = parseInt(match2[2]);
+        const word = words.slice(offset, offset + len);
+        console.log(val, len, word);
+        offset += len;
+        const w = this.filter(this.word(word, val));
+        if (w.length == 1) {
+          decoded.push(w[0]);
+        } else {
+          decoded.push("[" + w.toString() + "]");
+        }
+      }
+      res += decoded.join(" ");
+    }
+    res += primary.slice(pos);
+    return res;
+  }
+  search_dict(primary: string): string {
+    // {Taaghiilnorrssy: (139,4) (47,2) (112,4) (220,5)}.
+    if (this.word_trait_list.size === 0) {
+      this.build_word_traits();
+    }
+
+    const regex1 = /\{([A-Z]+)\:((\s?\([0-9]+,\s?[0-9]+\))+)\}/g;
+    const regex2 = /\(([0-9]+),\s?([0-9]+)\)/g;
+    let match1, match2;
+    const line = primary.toUpperCase();
+
+    let res = "";
+    let pos = 0;
+    while ((match1 = regex1.exec(line)) !== null) {
+      // console.log(match1);
+      res += primary.slice(pos, match1.index);
+      const words = match1[1];
+      pos = match1.index + match1[0].length;
+
+      // let offset = 0;
+      const candidate: number[][][] = [];
+      while ((match2 = regex2.exec(match1[2])) !== null) {
+        const val = parseInt(match2[1]);
+        const len = parseInt(match2[2]);
+        // const word = words.slice(offset, offset + len);
+        // offset += len;
+
+        const key = "(" + val + "," + len + ")";
+        const possible = this.word_trait_list.get(key);
+        // console.log(val, len, possible);
+        if (possible !== undefined) {
+          candidate.push(possible.map((s) => ArrayEncoder.to_code(s)));
+        } else {
+          candidate.push([]);
+        }
+      }
+      const target = Array.from({ length: 26 }, (_v, _k) => 0);
+      for (let i = 0; i < words.length; i++) {
+        target[words.charCodeAt(i) - code0 - 1]++;
+      }
+      const sentences = this.search_dict_combination(candidate, target);
+      // console.log(candidate, target);
+      // console.log(sentences);
+      if (sentences.length === 1) {
+        res += sentences[0].map((a) => ArrayEncoder.from_code(a).toLowerCase())
+          .join(" ");
+      } else {
+        res += "[" + sentences.map((s) =>
+          s.map((a) =>
+            ArrayEncoder.from_code(a).toLowerCase()
+          ).join(" ")
+        ).join(",") + "]";
+      }
+    }
+    res += primary.slice(pos);
+    return res;
+  }
+
+  private search_dict_combination(
+    candidate: number[][][],
+    target: number[],
+  ): number[][][] {
+    if (candidate.length < 1) {
+      return [[]];
+    }
+    // console.log(candidate.length, target.join(""));
+
+    const res: number[][][] = [];
+    for (const c of candidate[0]) {
+      const target_copy = target.slice();
+      let valid = true;
+      for (const i of c) {
+        if (--target_copy[i - 1] < 0) {
+          valid = false;
+          break;
+        }
+      }
+      if (!valid) {
+        continue;
+      }
+      const next = this.search_dict_combination(
+        candidate.slice(1),
+        target_copy,
+      );
+      for (const n of next) {
+        res.push([c, ...n]);
+      }
+    }
+    return res;
+  }
+
+  word_len(): number {
+    return this.word_list.size;
   }
 }
 
@@ -189,7 +360,7 @@ Deno.test("3. 灵活运用", () => {
   console.log("[Decode]", decoder.sentence(encrypt));
 });
 
-Deno.test("Tips.3", () => {
+Deno.test("01:Tips.3", () => {
   const decoder = new ArrayDecoder();
   // encode
   const sentence = "Tips are often given in forms of hidden hints.";
@@ -199,9 +370,19 @@ Deno.test("Tips.3", () => {
   console.log("[Decode]", decoder.sentence(encrypt));
 });
 
+Deno.test("02:Tips.3", () => {
+  const decoder = new ArrayDecoder();
+  decoder.read_words(1);
+  console.log(`All ${decoder.word_len()} words loaded.`);
+  const encrypt =
+    "{Taaghiilnorrssy: (139,4) (47,2) (112,4) (220,5)}.\n{Ycdddeehiioopsttu: (118,3) (161,7) (139,4) (86,3)}.";
+  // decode
+  console.log("[Decode]", decoder.search_dict(encrypt).replaceAll("\n", "\\n"));
+});
+
 Deno.test("词库测试", () => {
   const decoder = new ArrayDecoder();
-  const words = Deno.readTextFileSync(word_list_path).trim().split("\n").map(
+  const words = Deno.readTextFileSync(word_list_path[0]).trim().split("\n").map(
     (s) => s.trim().toUpperCase(),
   );
   const map = new Map<string, [number, string[]]>();
@@ -222,7 +403,7 @@ Deno.test("词库测试", () => {
       list.filter((s) => !strs.includes(s)).length > 0
     ) {
       // not equal
-      console.warn("[Error] Dismatched:", val, strs, "->", list);
+      console.warn("[Error] Unmatched:", val, strs, "->", list);
     } else {
       console.log("Pass:", val, strs);
     }

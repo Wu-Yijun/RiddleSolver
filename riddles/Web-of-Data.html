@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>02. Nise Code | 聂子密码</title>
-    <link rel="stylesheet" href="./assets/style.css">
-    <id>02</id>
+    <title>16. Web of Data | 数据之网</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <id>16</id>
     <script src="./scripts/notes.js"></script>
     <script src="./scripts/verify.js"></script>
   </head>
@@ -12,25 +12,33 @@
     <header></header>
     <div id="info-box"></div>
     <div id="main">
-      <h1 class="title" title="迷题02 聂子密码">
-        <span class="initial">R</span>iddle 02&emsp;&emsp;
-        <span class="initial">N</span>ise
-        <span class="initial">C</span>ode
+      <h1 class="title" title="迷题16 数据之网(聂子密码进阶)">
+        <span class="initial">R</span>iddle 16&emsp;&emsp;
+        <span class="initial">W</span>eb of
+        <span class="initial">D</span>ata
       </h1>
-      <h3 class="title hv1" hv1="之后这句话就写在信封上了, 因此后续的迷题中没有此句.">
-        如果你觉得此信与你无关, 请将其以原样放回原处. 谢谢.
-      </h3>
       <div class="section">
         <p>
-          你知道摩斯电码吗? 也就是说, 用类于 0 / 1 的字符,
-          将文本按照特定的规则转换成的二进制码的一种方式. 但是,
-          摩斯电码广泛应用于电报, 却难以应用于计算机, 正是出自其编码的局限性.
-          换言之, 若不借助字母与字母之间的停顿信息,
-          我们无法把二进制码准确的转回正常的句子. 为此, 我们提出了
-          <span class="hv1" hv1="以防你不知道聂子, 他是我们当时的一个同学.">
-            Nise
-          </span> Code , 它可以完美解决摩斯密码的弊端.
+          将 √<span style="text-decoration: overline">3/2</span> 化为二进制表示,
+          并以蛇形 (逆时针旋转) 依次填入格子中.
         </p>
+        <p>
+          例如: 1.71875&rarr;1.1011100 , 之后填入格子中 (如下图) .
+        </p>
+        <img>
+        <p>
+          将格子的起始位置记作 (0, 0) , 以水平为 x 轴, 竖直为 y 轴,
+          确立每个格子与坐标的一一对应关系.
+        </p>
+        <p>
+          从格子 (a, b) 算起, 向右数 (n - 1) 个格子, 可以得到一个由 n
+          位二进制码编成的序列, 将其记作 (a, b, n).
+        </p>
+        <p>
+          例如: "110" 在上图中的编码为: (-1, 1, 3)
+        </p>
+      </div>
+      <div class="section">
         <h4>
           部分编码表如下:
         </h4>
@@ -94,13 +102,18 @@
         </table>
       </div>
       <div class="section">
-        <h4>有了这些变换, 我们就可以得到<span class="hv1" hv1="下面分别对应不同的单词, 这里 表述有歧义">一个单词</span>的Nise Code值:</h4>
+        <h4>
+          有了这些变换, 我们就可以得到<span
+            class="hv1"
+            hv1="下面分别对应不同的单词, 这里 表述有歧义"
+          >一个单词</span>的Nise Code值:
+        </h4>
         <p>如: [11110100000000011010]<sub>2</sub></p>
         <p style="text-indent: 3.5em">[-108357]<sub>10</sub></p>
       </div>
       <div class="section">
         <h4>
-          那么, 聪明的Riddolver, 试着翻译下面两句话吧。
+          那么, 聪明的Riddolver, 试着翻译下面两句话吧.
         </h4>
         <p class="encoded centered">
           体育馆一楼: 233175 58242 265251616 -53989 -19807 377683543 96384.
@@ -215,7 +228,10 @@
             本题的代码中有两种编码方式, 一种是直接读取 Nise Code 的编码表, 另外
             一种是从词频表中生成的编码表, 但生成的编码不是我们题中使用的.
           </p>
-          <p class="hv1" hv1="乐死了, 这两个地方的迷题都是同一道题, 当时觉得消防箱不安全, 就放了两个.">
+          <p
+            class="hv1"
+            hv1="乐死了, 这两个地方的迷题都是同一道题, 当时觉得消防箱不安全, 就放了两个."
+          >
             在网页版中, 你不用真的去这些地方寻找,
             只需要将解码后的答案输入到输入框中, 就可以继续下一题.
           </p>

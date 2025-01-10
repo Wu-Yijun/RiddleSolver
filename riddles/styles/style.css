@@ -5,6 +5,10 @@
   font-style: normal;
 }
 
+id{
+  display: none;
+}
+
 #main {
   width: 70vw;
   max-width: 980px;
@@ -198,7 +202,7 @@ p.inline {
     Arial,
     sans-serif;
   font-weight: bolder;
-  font-size: 2.5em;
+  font-size: 2.3em;
   border-top: 3px solid rgb(107, 137, 237);
   border-bottom: 3px solid rgb(107, 137, 237);
   color: rgb(107, 137, 237);
@@ -276,6 +280,10 @@ p.encoded, span.encoded {
   font-weight: bold;
   font-style: italic;
   font-size: smaller;
+}
+
+.centered{
+  text-align: center;
 }
 
 .encrypted, .encrypted p {
