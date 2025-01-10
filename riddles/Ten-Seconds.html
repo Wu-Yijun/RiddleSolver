@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>35. Ten Seconds | 十秒挑战</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <id>35</id>
+    <script src="./scripts/notes.js"></script>
+    <script src="./scripts/verify.js"></script>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="info-box"></div>
+    <div id="main">
+      <h1 class="title" title="迷题35 十秒挑战">
+        <span class="initial">R</span>iddle 35&emsp;&emsp;
+        <span class="initial">T</span>en
+        <span class="initial">S</span>econds
+      </h1>
+      <div class="section">
+        <p>
+          你知道 "十秒挑战" 吗? 这里我们也有一个十秒挑战, 只不过它的精度是三位,
+          也即100. Riddolver, 试着解出这个谜题吧.
+        </p>
+      </div>
+      <div class="section">
+        <h4>
+          这是芯片的用法:
+        </h4>
+        <p>
+          1. 将芯片插入USB供电口. (因芯片功率较小, 部分充电宝识别不到,
+          可能会中途断电)
+        </p>
+        <p>
+          2. 听到 "dah-" 的一声后, 芯片启动完成.
+        </p>
+        <p>
+          3. 按下按钮, 开始播放优美动听的音乐, 同时开始计时.
+          (按钮与芯片的连接点较脆弱, 大力可能会出奇迹)
+        </p>
+        <p>
+          4. 再次按下按钮, 若精度达到要求, 发出 "dah-" , 1 秒后播放 Nise Code.
+          否则发出 "di- di- di-" 后芯片停止运行 (再次尝试需重新上电).
+        </p>
+      </div>
+      <div class="section">
+        <h4>
+          如下是 Nise Code Stream 规则:
+        </h4>
+        <p>
+          Nise Code 中的 '0' 用 "di-" 表示, '1' 用 "dah-" 表示, 将一秒均匀分为 8
+          个 tick , 其中 "di" 持续 2 tick, "dah" 持续 5 tick, 声音之间的空白持续
+          2 tick (-) , 字母与字母之间的空白持续 4 tick (--) ,
+          单词与单词之间的空白持续 7 tick (---) . 每个句子以 "di-dah-di-dah---"
+          开头, 以 "---dah-di-dah-di" 结尾. 如需表示数字, 则使用 "di-"
+          的数量表示数字 1 - 9 , 使用单个 "dah--" 表示数字 '0' .
+        </p>
+        <h4>
+          例如 "Nise Code" 用 Nise Code Stream 表示为
+        </h4>
+        <p>
+          di-dah-dah-di--di-dah-dah-dah--di-di-dah-dah--di-dah-di---di-di-dah-di-dah--dah-di-di-di--dah-di-dah-dah-dah--di-dah-di---
+        </p>
+      </div>
+
+      <div class="section manipulate">
+        <h4 class="start">
+          操作区:
+        </h4>
+        <div
+          class="button centered"
+          id="ten-second-chip"
+          style="margin-left: 20%; margin-right: 20%; margin-bottom: 1em; color: green"
+        >
+          Insert Chip
+        </div>
+        <div
+          class="button centered"
+          id="ten-second-button"
+          style="margin-left: 20%; margin-right: 20%; cursor: not-allowed"
+        >
+          <p>The <strong>Only</strong> Button</p>
+        </div>
+        <script src="./scripts/ten-second.js" type="module"></script>
+      </div>
+
+      <div id="quotes">
+        <p indent="3">败者死于绝望,</p>
+        <p indent="7">胜者死于渴望.</p>
+      </div>
+
+      <div class="section">
+        <h4 class="title">
+          Tips
+        </h4>
+        <ol class="encrypted">
+          <li>
+            <p
+              class="hv1 hv2"
+              title="(单击转写)(双击翻译)"
+              hv1="Mind the time and record the Nise Code Stream."
+              hv2="注意把握时间, 可以录下 Nise Code Stream 以方便解读."
+            >
+              Mind the time and record the Nise Code Stream
+            </p>
+          </li>
+          <li>
+            <p
+              class="hv1 hv2"
+              title="(单击转写)(双击翻译)"
+              hv1="one nought nought is not ten seconds"
+              hv2="100 不是十秒"
+            >
+              1074 -39808241 -39808241 -140 -1209 806 -427094668
+            </p>
+          </li>
+          <li>
+            <p
+              class="hv1 hv2"
+              title="(单击转写)(双击翻译+吐槽)"
+              hv1="try waiting one hundred seconds instead"
+              hv2="要以 100 的精度等待, 10.0 秒的时间卡不准, 那么就等待 100 秒吧."
+            >
+              1052140613017550996102917131902282051478871
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div id="tags">
+        <p>
+          <span class="tag-name" title="编号">ID:</span>
+          35
+        </p>
+        <p>
+          <span class="tag-name" title="代号">Code:</span>
+          <span title="锲而不舍">Try again</span>
+        </p>
+      </div>
+
+      <div id="checkers" both="true">
+        <h4 class="title">
+          输入并检查答案
+        </h4>
+        <div class="checker-box">
+          <div class="checker" answer="behind post board near fallen stone">
+            <p
+              class="answer-info hv0 inline"
+              title="本题没有句点, 且以 '71=' 开头"
+            >
+              Answer
+            </p>
+            <div contenteditable="true" class="answer"></div>
+            <div class="button">Check</div>
+          </div>
+          <p class="answer-notes inline">
+            下一个迷题藏在假山的监控旁, 杆子所在的地下
+          </p>
+        </div>
+
+        <div id="checkers-notes">
+          <p>
+            事实上, 这一题的网络版只算是完成了一半, 因为你要在学校中找到 <strong
+            >71=42</strong> 所对应的位置
+          </p>
+          <p>
+            如果你经常在体育馆乱逛且注意观察的话,
+            会发现在二楼的某个火警报警器的显示器上会闪烁 '71=42' 这个神奇的数字,
+            这也就是我们的目标所在.
+          </p>
+          <p>
+            关于这题的动机, 是我看到 71 的外观有些像丙烯, 然后它的分子量恰好又是
+            42, 满足上面闪烁的神奇数字. 于是就凑出了乙烷, 丙烷, 乙烯,
+            乙炔作为题设等式. 如果没有脑洞, 还真不一定能想出来.
+          </p>
+          <p>
+            虽然题目的代号是 'Press bravely', 不过千万不要被它骗了,
+            你只需要打开火警控制器的上盖, 从里面取出一个纸卷,
+            这就是下一道迷题了!
+          </p>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div class="l button" onclick="window.location.href='./list.html'">
+          <p>
+            &lt;&lt;&lt; 迷题列表
+          </p>
+        </div>
+        <div class="r button next-riddle" riddle="Destiny-and-Destination">
+          <p>
+            23 &gt;&gt;&gt;
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

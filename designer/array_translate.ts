@@ -48,4 +48,47 @@ Deno.test("decode tips", () => {
     "16:1",
     decoder.sentence("Ccehk(101) eht(51) beeistw(315) for(90) ehlp(118)"),
   );
+  // --- 23 ---
+  console.log(
+    "23:2",
+    decoder.sentence(
+      "aceh(48) fo(27) eht(51) 64 Gua adnsst(252) for(90) a(1) isx(109) bety(132) 01 cdeo(65)",
+    ),
+  );
+  console.log(
+    "23:3",
+    nizi.sentence("377673303 86 -637335033 322889089943767"),
+  );
+  console.log(
+    "23:4:1",
+    nizi.sentence("-10977 -86221 284 778 3423638 79069950"),
+  );
+  console.log(
+    "23:4:2",
+    nizi.sentence("39071447 778 123580189 134 -818590 -10977"),
+  );
+  console.log(
+    "23:4",
+    nizi.long("1442193488623282"),
+  );
+  console.log(
+    "23:4:1",
+    nizi.long("-424677567179640188352414186753"),
+  );
+  // --- 35 ---
+  console.log(
+    "35:2",
+    nizi.sentence("1074 -39808241 -39808241 -140 -1209 806 -427094668"),
+  );
+  console.log(
+    "35:3",
+    nizi.sentence("6183 1074 -997363624 -427094668 -72227496 "),
+  );
+});
+
+Deno.test("encode tips", () => {
+  const nizi = new NiziCode();
+  const num = nizi.encode_sentence_long("try waiting one hundred seconds instead");
+  console.log(num);
+  console.log(nizi.long(num));
 });

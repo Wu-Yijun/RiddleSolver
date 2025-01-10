@@ -144,7 +144,7 @@ class NiziCode {
     }
     return res;
   }
-  to_binary(num: number|bigint): string {
+  to_binary(num: number | bigint): string {
     if (num > 0) {
       return num.toString(2);
     } else {
@@ -158,17 +158,40 @@ class NiziCode {
   sentence(line: string): string {
     return line.replaceAll(/(?<![0-9+])-?\d+/g, (s) => this.word(parseInt(s)));
   }
-  long(long_code: string):string{
+  long(long_code: string): string {
     const digit = BigInt(long_code);
     return this.binary(this.to_binary(digit)).toLowerCase();
   }
 
-  // encode_binary(word: string):string{
+  encode_char(s: string): string {
+    const c = s.charCodeAt(0) - code0 - 1;
+    return this.codes[c];
+  }
+  encode_binary(word: string): string {
+    let res = "";
+    for (let i = 0; i < word.length; i++) {
+      const c = word.charCodeAt(i) - code0 - 1;
+      res += this.codes[c];
+    }
+    return res;
+  }
 
-  // }
-  // encode_word(word: string):string{
-
-  // }
+  encode_sentence(line: string): string {
+    return line.replaceAll(
+      /[a-zA-Z]+/g,
+      (s) => this.encode_binary(s.toUpperCase()),
+    );
+  }
+  encode_sentence_long(line: string): string {
+    const binary = line.toUpperCase().matchAll(/[A-Z]+/g)
+      .reduce((acc, match) => acc + this.encode_binary(match[0]), "");
+    const is_neg = binary[0] === "0";
+    const binary_code = is_neg
+      ? binary.split("").map((s) => s === "0" ? "1" : "0").join("")
+      : binary;
+    const digit = BigInt("0b" + binary_code);
+    return is_neg ? "-" + digit.toString() : digit.toString();
+  }
 }
 
 Deno.test("nizi code freq", () => {

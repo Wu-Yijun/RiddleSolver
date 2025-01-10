@@ -194,6 +194,7 @@ class ArrayDecoder {
     if (this.word_list.size === 0) {
       this.read_words();
     }
+    // console.log(words);
     return words.filter((word) => this.word_list.has(word));
   }
   secondary(primary: string): string {
