@@ -5,7 +5,7 @@
   font-style: normal;
 }
 
-id{
+id {
   display: none;
 }
 
@@ -75,6 +75,20 @@ p.section-title {
   /* font-weight: bold;
   font-size: 1.2em; */
 }
+.section image, .section img {
+  display: block;
+  margin: auto;
+  max-width: 50%;
+  min-width: 200px;
+}
+.section .columns {
+  width: -webkit-fill-available;
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
 
 #checkers {
   border-top: 2px solid black;
@@ -103,13 +117,14 @@ p.section-title {
   /* margin: 1em; */
 }
 .checker > .answer {
-  max-width: calc(60% - 100px);
+  max-width: calc(65% - 100px);
   min-width: calc(30% + 50px);
   width: auto;
   height: auto;
   min-height: 1em;
   border-bottom: black 1px solid;
   margin: auto;
+  /* font-size: 0.9em; */
 }
 .checker-box .answer-notes {
   display: none;
@@ -119,6 +134,21 @@ p.inline {
   padding: 0px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+.section div.inline {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  align-content: flex-start;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+div.inline > p {
+  margin: 0;
+  padding: 0;
 }
 
 .answer-notes {
@@ -221,6 +251,42 @@ p.inline {
 #quotes > p:nth-child(3) {
   text-indent: 7em;
 }
+#quotes > p[indent="0.5"] {
+  text-indent: 0.5em;
+}
+#quotes > p[indent="1"] {
+  text-indent: 1em;
+}
+#quotes > p[indent="1.5"] {
+  text-indent: 1.5em;
+}
+#quotes p[indent="2"] {
+  text-indent: 2em;
+}
+#quotes p[indent="2.5"] {
+  text-indent: 2.5em;
+}
+#quotes p[indent="3"] {
+  text-indent: 3em;
+}
+#quotes p[indent="3.5"] {
+  text-indent: 3.5em;
+}
+#quotes p[indent="4"] {
+  text-indent: 4em;
+}
+#quotes p[indent="4.5"] {
+  text-indent: 4.5em;
+}
+#quotes p[indent="5"] {
+  text-indent: 5em;
+}
+#quotes p[indent="6"] {
+  text-indent: 6em;
+}
+#quotes p[indent="7"] {
+  text-indent: 7em;
+}
 
 #tags {
   font-family: "Comic Sans MS";
@@ -261,6 +327,7 @@ tr > th:first-child {
 }
 td {
   background-color: #fff;
+  min-width: 50px;
 }
 tr > td:first-child {
   background-color: #ddd;
@@ -282,7 +349,7 @@ p.encoded, span.encoded {
   font-size: smaller;
 }
 
-.centered{
+.centered {
   text-align: center;
 }
 

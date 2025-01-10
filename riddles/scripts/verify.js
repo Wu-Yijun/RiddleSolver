@@ -9,7 +9,7 @@ function main() {
   let left = checkers.length;
   let i = 1;
   for (const checker_box of checkers) {
-    const key = "ans" + Id + ":" + i;
+    const key = "Riddolver-" + Id + ":" + i;
     const riddle_button = next_riddles[i - 1];
     i += 1;
     const checker = checker_box.getElementsByClassName("checker")[0];

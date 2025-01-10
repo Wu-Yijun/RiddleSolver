@@ -18,115 +18,179 @@
         <span class="initial">D</span>ata
       </h1>
       <div class="section">
-        <p>
+        <h4>
           将 √<span style="text-decoration: overline">3/2</span> 化为二进制表示,
           并以蛇形 (逆时针旋转) 依次填入格子中.
-        </p>
+        </h4>
         <p>
-          例如: 1.71875&rarr;1.1011100 , 之后填入格子中 (如下图) .
+          例如: <span class="hv1" hv1="注意这不是 sqrt(3/2).">1.71875</span>
+          &rarr; 1.1011100 , 之后填入格子中 (如下图) .
         </p>
-        <img>
+        <img src="./assets/web-of-data.jpg" alt="Web of Data">
         <p>
           将格子的起始位置记作 (0, 0) , 以水平为 x 轴, 竖直为 y 轴,
           确立每个格子与坐标的一一对应关系.
         </p>
         <p>
-          从格子 (a, b) 算起, 向右数 (n - 1) 个格子, 可以得到一个由 n
-          位二进制码编成的序列, 将其记作 (a, b, n).
+          从格子 (x, y) 算起, 向右数 (n - 1) 个格子, 可以得到一个由 n
+          位二进制码编成的序列, 将其记作<span
+            class="hv1"
+            hv1="坏事, 我当年这里搞反了."
+          >
+            (y, x, n)
+          </span>.
         </p>
         <p>
-          例如: "110" 在上图中的编码为: (-1, 1, 3)
+          例如: "110" 在上图中的编码为: (1, -1, 3)
         </p>
       </div>
       <div class="section">
         <h4>
-          部分编码表如下:
+          则各字母在上述网格中的编码为:
         </h4>
-        <table>
-          <thead>
-            <tr>
-              <th>原始字母</th>
-              <th>编码序列</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>N</td>
-              <td>0110</td>
-            </tr>
-            <tr>
-              <td>I</td>
-              <td>0111</td>
-            </tr>
-            <tr>
-              <td>S</td>
-              <td>0011</td>
-            </tr>
-            <tr>
-              <td>E</td>
-              <td>010</td>
-            </tr>
-            <tr>
-              <td>C</td>
-              <td>00101</td>
-            </tr>
-            <tr>
-              <td>O</td>
-              <td>1000</td>
-            </tr>
-            <tr>
-              <td>D</td>
-              <td>10111</td>
-            </tr>
-            <tr>
-              <td>A</td>
-              <td>1010</td>
-            </tr>
-            <tr>
-              <td>F</td>
-              <td>11100</td>
-            </tr>
-            <tr>
-              <td>L</td>
-              <td>10100</td>
-            </tr>
-            <tr>
-              <td>K</td>
-              <td>1111110</td>
-            </tr>
-            <tr>
-              <td>其它</td>
-              <td>就不告诉你</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="columns">
+          <table>
+            <thead>
+              <tr>
+                <th>字母</th>
+                <th>码值</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>A</td>
+                <td>(-21, -21, 4)</td>
+              </tr>
+              <tr>
+                <td>B</td>
+                <td>(-13, -5, 6)</td>
+              </tr>
+              <tr>
+                <td>C</td>
+                <td>(-21, 49, 5)</td>
+              </tr>
+              <tr>
+                <td>D</td>
+                <td>(22, 11, 5)</td>
+              </tr>
+              <tr>
+                <td>E</td>
+                <td>(4, -6, 3)</td>
+              </tr>
+              <tr>
+                <td>F</td>
+                <td>(42, 19, 5)</td>
+              </tr>
+              <tr>
+                <td>G</td>
+                <td>(3, 31, 6)</td>
+              </tr>
+              <tr>
+                <td>H</td>
+                <td>(-5, 15, 4)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <table>
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>I</td>
+                <td>(24, 11, 4)</td>
+              </tr>
+              <tr>
+                <td>J</td>
+                <td>(-59, 34, 8)</td>
+              </tr>
+              <tr>
+                <td>K</td>
+                <td>(72, -47, 7)</td>
+              </tr>
+              <tr>
+                <td>L</td>
+                <td>(-18, -22, 5)</td>
+              </tr>
+              <tr>
+                <td>M</td>
+                <td>(-47, -37, 5)</td>
+              </tr>
+              <tr>
+                <td>N</td>
+                <td>(5, 22, 4)</td>
+              </tr>
+              <tr>
+                <td>O</td>
+                <td>(-29, -16, 4)</td>
+              </tr>
+              <tr>
+                <td>P</td>
+                <td>(18, 48, 6)</td>
+              </tr>
+              <tr>
+                <td>Q</td>
+                <td>(-11, -98, 8)</td>
+              </tr>
+            </tbody>
+          </table>
+          <table>
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>R</td>
+                <td>(-1, 11, 4)</td>
+              </tr>
+              <tr>
+                <td>S</td>
+                <td>(-4, 19, 4)</td>
+              </tr>
+              <tr>
+                <td>T</td>
+                <td>(-17, 12, 3)</td>
+              </tr>
+              <tr>
+                <td>U</td>
+                <td>(-29, -42, 5)</td>
+              </tr>
+              <tr>
+                <td>V</td>
+                <td>(-29, 1, 7)</td>
+              </tr>
+              <tr>
+                <td>W</td>
+                <td>(-2, -42, 5)</td>
+              </tr>
+              <tr>
+                <td>X</td>
+                <td>(7, 2, 8)</td>
+              </tr>
+              <tr>
+                <td>Y</td>
+                <td>(42, -33, 6)</td>
+              </tr>
+              <tr>
+                <td>Z</td>
+                <td>
+                  <span
+                    class="hv1"
+                    hv1="这个 43 我当年打成 -43 了, 真是一堆问题"
+                  >(43, -4, 8)</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
       <div class="section">
-        <h4>
-          有了这些变换, 我们就可以得到<span
-            class="hv1"
-            hv1="下面分别对应不同的单词, 这里 表述有歧义"
-          >一个单词</span>的Nise Code值:
-        </h4>
-        <p>如: [11110100000000011010]<sub>2</sub></p>
-        <p style="text-indent: 3.5em">[-108357]<sub>10</sub></p>
-      </div>
-      <div class="section">
-        <h4>
-          那么, 聪明的Riddolver, 试着翻译下面两句话吧.
-        </h4>
         <p class="encoded centered">
-          体育馆一楼: 233175 58242 265251616 -53989 -19807 377683543 96384.
-        </p>
-        <p class="encoded centered">
-          教学楼: 233175 58242 265251616 -53989 -19807 401.
+          24038 -1807455 778 256065152 -7912 86 -237865.
         </p>
       </div>
 
       <div id="quotes">
-        <p>人把知识传授给他人后,</p>
-        <!-- <p></p> -->
-        <p>就不再那么热爱知识了.</p>
+        <p indent="0.5">纵使蜘蛛编出的网再大,</p>
+        <p indent="2.5">老鹰也能从容自在地将它冲破.</p>
       </div>
 
       <div class="section">
@@ -134,35 +198,26 @@
           Tips
         </h4>
         <ol class="encrypted">
-          <li>
+          <li value="0">
             <p
-              class="hv1 hv2"
-              title="(单击转写)(双击翻译)"
-              hv1="Turn number into binary."
-              hv2="将数字转为二进制表述, 即可得到 Nise Code."
+              class="hv2"
+              title="(双击翻译)"
+              hv2="因为其它 Riddles 的 Tips 会使用到 Nise Code 来加密, 而且还有的 Riddle 本身就包含 Nise Code 的运算, 如果不得到一张 Nise Code 的密码表, 你几乎就注定无法继续解迷了. 也即是 'Decode or Defeat' (破译 还是 破灭) ."
             >
-              Tnru(172) bemnru(236) inot(157) abinry(306).
+              因为其它 Riddles 的 Tips 会使用到 Nise Code 来加密, 而且还有的
+              Riddle 本身就包含 Nise Code 的运算, 如果不得到一张 Nise Code
+              的密码表, 你几乎就注定无法继续解迷了. 也即是 "Decode or Defeat"
+              (破译 或是 破灭) .
             </p>
           </li>
           <li>
             <p
               class="hv1 hv2"
               title="(单击转写)(双击翻译)"
-              hv1='"-" means 0 and 1 is reversed.'
-              hv2="负号表示应将0和1反转"
+              hv1="Check the website for help."
+              hv2="如需帮助, 可去网站上查看."
             >
-              "-" aemns(177) 0 adn(41) 1 is(47) deeerrsv(385).
-            </p>
-          </li>
-          <li>
-            <p
-              class="hv0 hv1 hv2"
-              title="(已加密) (可点击查看解密后的结果) (双击以查看翻译和吐槽)"
-              hv1="(双击以查看翻译和吐槽) This is long array.&#10;You decoded this tip."
-              hv2="(译文) 这是长加密序列.&#10;你已经解密了这个提示.&#10;&#10;(吐槽) 你搁着搁着呢? 我可谢谢你, 写了不少代码就为看这个?"
-            >
-              {Taaghiilnorrssy: (139,4) (47,2) (112,4) (220,5)}.<br>
-              {Ycdddeehiioopsttu: (118,3) (161,7) (139,4) (86,3)}
+              Ccehk(101) eht(51) beeistw(315) for(90) ehlp(118)
             </p>
           </li>
         </ol>
@@ -171,69 +226,53 @@
       <div id="tags">
         <p>
           <span class="tag-name" title="编号">ID:</span>
-          03
+          16
         </p>
         <p>
           <span class="tag-name" title="代号">Code:</span>
           <span
             class="hv1"
-            title="永不放弃"
-            hv1="大概是'永不放弃'的意思吧, 我也不懂为啥弄了这么一个奇怪的英文."
-          >Permanent Strive</span>
+            title="破译 或是 破灭"
+            hv1="这是 neta 了 '生存还是毁灭' , 挺中二的不是吗?"
+          >Decode or Defeat</span>
         </p>
       </div>
 
-      <div id="checkers" both="false">
-        <h4 class="title hv1" hv1="从这里开始, 都是网页版特有的.">
+      <div id="checkers" both="true">
+        <h4 class="title">
           输入并检查答案
         </h4>
         <div class="checker-box">
-          <div class="checker" answer="Find fire killer case near locked door.">
-            <p class="answer-info inline hv0" title="注意标点, 本句有句点">
-              体育馆一楼:
+          <div class="checker" answer="Dig under the monitor rod at hill.">
+            <p class="answer-info inline" title="注意标点, 本句有句点">
+              Answer
             </p>
             <div contenteditable="true" class="answer"></div>
             <div class="button">Check</div>
           </div>
           <p class="answer-notes inline">
-            下一个迷题藏在体育馆一楼门口的消防箱中.
+            下一个迷题藏在假山的监控旁, 杆子所在的地下
           </p>
         </div>
-        <div class="checker-box">
-          <div class="checker" answer="Find fire killer case near 401.">
-            <p class="answer-info inline h0" title="注意标点, 本句有句点">
-              教学楼:
-            </p>
-            <div contenteditable="true" class="answer"></div>
-            <div class="button">Check</div>
-          </div>
-          <p
-            class="answer-notes inline hv1"
-            hv1="401是教学楼的一个房间号, 不是Nise Code的一部分, 思维要有灵活性."
-          >
-            下一个迷题藏在教学楼401旁边的消防箱中.
-          </p>
-        </div>
+
         <div id="checkers-notes">
           <p>
-            这一题也是一个简单的介绍, 一方面的目的是让你了解 Nise Code
-            的编码方式, 方便后续的题目直接给出 Nise Code 值. 你还可以看到,
-            本题的提示是使用 Array 编码的, 这也是第一题的编码的应用.
-            <span class="hv1" hv1="但是它没有起到实际作用, 你搞我心态呢?"
-            >最后一条提示的编码被混合了, 因此更难分析</span>.
+            理论上, 如果你在上一题推出了完整的 Nizi Code 编码表, 你无需求解,
+            只要翻译最后一句话即可.
           </p>
           <p>
-            其实这一题在设计时, 我没有保存当时使用的 Huffman 编码时用到的词频表,
-            因此现在从 Wikipedia 上复制的词频表的编码结果与原来的有所不同. 因此,
-            本题的代码中有两种编码方式, 一种是直接读取 Nise Code 的编码表, 另外
-            一种是从词频表中生成的编码表, 但生成的编码不是我们题中使用的.
+            本题设计的目的是将你手上不完整的 Nizi Code 编码表补全,
+            保证后续题目你不会因为中缺少编码而卡住.
           </p>
-          <p
-            class="hv1"
-            hv1="乐死了, 这两个地方的迷题都是同一道题, 当时觉得消防箱不安全, 就放了两个."
-          >
-            在网页版中, 你不用真的去这些地方寻找,
-            只需要将解码后的答案输入到输入框中, 就可以继续下一题.
+          <p>
+            之前几题虽然我都给出了代码实现, 但破译时是可以使用手算的.
+            但这一题对你的计算机水平和数学水平提出了要求,
+            <span
+              class="hv1"
+              hv1="我没有使用 π 或 e 就是不想让你能直接从网上搜到结果."
+            >你需要能求出一个简单的根式, 计算它的二进制表示</span>
+            (或者使用 Mathematica 等数学工具). 然后根据要求排成矩阵,
+            读取特定位置的信息. 由于给出的坐标故意设置的很大, 因此无法手算.
           </p>
         </div>
       </div>
@@ -244,14 +283,9 @@
             &lt;&lt;&lt; 迷题列表
           </p>
         </div>
-        <div class="r button next-riddle" riddle="Web-of-Data">
+        <div class="r button next-riddle" riddle="Red-Ghost">
           <p>
-            16 &gt;&gt;&gt;
-          </p>
-        </div>
-        <div class="button next-riddle" riddle="Web-of-Data">
-          <p>
-            16 &gt;&gt;&gt;
+            44 &gt;&gt;&gt;
           </p>
         </div>
       </div>

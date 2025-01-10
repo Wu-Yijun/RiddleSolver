@@ -16,7 +16,7 @@ class NiziCode {
   private readonly freq: number[];
   private tree: HuffmanNode;
   private codes: string[];
-  constructor(path: string, type: "freq" | "code" = "freq") {
+  constructor(path: string = nizi_code_path, type: "freq" | "code" = "code") {
     if (type === "freq") {
       const data = Deno.readTextFileSync(path);
       this.freq = data.trim().split("\n").map((line) =>
@@ -106,11 +106,11 @@ class NiziCode {
     if (node.left) {
       this.get_tree(dest, node.left, pre + "0");
     }
-    if (node.right) {
-      this.get_tree(dest, node.right, pre + "1");
-    }
     if (node.chars.length === 1) {
       dest.push([String.fromCharCode(node.chars[0] + code0 + 1), pre]);
+    }
+    if (node.right) {
+      this.get_tree(dest, node.right, pre + "1");
     }
   }
   print_tree() {
@@ -144,7 +144,7 @@ class NiziCode {
     }
     return res;
   }
-  to_binary(num: number): string {
+  to_binary(num: number|bigint): string {
     if (num > 0) {
       return num.toString(2);
     } else {
@@ -158,6 +158,17 @@ class NiziCode {
   sentence(line: string): string {
     return line.replaceAll(/(?<![0-9+])-?\d+/g, (s) => this.word(parseInt(s)));
   }
+  long(long_code: string):string{
+    const digit = BigInt(long_code);
+    return this.binary(this.to_binary(digit)).toLowerCase();
+  }
+
+  // encode_binary(word: string):string{
+
+  // }
+  // encode_word(word: string):string{
+
+  // }
 }
 
 Deno.test("nizi code freq", () => {
@@ -170,11 +181,14 @@ Deno.test("nizi code", () => {
   nizi.print_tree();
   console.log(nizi.binary("11110100000000011010"));
   console.log(nizi.word(-108357));
-  console.log(nizi.sentence("体育馆一楼: 233175 58242 265251616 -53989 -19807 377683543 96384."));
-  console.log(nizi.sentence("教学楼: 233175 58242 265251616 -53989 -19807 +401."));
+  console.log(
+    nizi.sentence(
+      "体育馆一楼: 233175 58242 265251616 -53989 -19807 377683543 96384.",
+    ),
+  );
+  console.log(
+    nizi.sentence("教学楼: 233175 58242 265251616 -53989 -19807 +401."),
+  );
 });
 
-Deno.test("web of data", () => {
-  const nizi = new NiziCode(nizi_code_path, "code");
-  console.log(nizi.sentence("24038 -1807455 778 256065152 -7912 86 -237865."));
-});
+export { nizi_code_path, NiziCode, word_frequency_path };

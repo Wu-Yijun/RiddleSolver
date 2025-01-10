@@ -325,6 +325,10 @@ class ArrayDecoder {
   word_len(): number {
     return this.word_list.size;
   }
+
+  public is_word(word: string): boolean {
+    return this.word_list.has(word.toUpperCase());
+  }
 }
 
 Deno.test("1. 找规律", () => {
