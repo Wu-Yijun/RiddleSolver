@@ -124,6 +124,39 @@ Deno.test("decode tips", () => {
     "54:II:2",
     nise.sentence("-9029701 778 -59213 134 778 -1762703"),
   );
+  // --- 65 ---
+  console.log(
+    "65:1",
+    nise.sentence(
+      "12972055218 778 -426039765 -17559 -749902030 229662 76638001.",
+    ),
+  );
+  console.log(
+    "65:2",
+    decoder.sentence(
+      "dfin(82) eht(51) aclmoorss(651) hitw(133) ahtt(119) moott(258) ghnu(120) pu(53) eht(51) allw(109).",
+    ),
+  );
+  // --- 76 ---
+  console.log(
+    "76:1",
+    decoder.sentence(
+      "aestt(184) ehmt(103) abelrvy(401).",
+    ),
+  );
+  console.log(
+    "76:2",
+    nise.long(
+      "493129087967168330513006988986666",
+    ),
+  );
+  // --- 87 ---
+  console.log(
+    "87:1",
+    nise.sentence(
+      "50333935494 -140 -19557 -108357 ",
+    ),
+  );
 });
 
 Deno.test("encode tips", () => {
@@ -131,4 +164,5 @@ Deno.test("encode tips", () => {
   const num = nise.encode_sentence_long("six");
   console.log(num);
   console.log(nise.long(num));
+  console.log(nise.encode_sentence_long("translate"));
 });

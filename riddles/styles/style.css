@@ -297,11 +297,21 @@ div.inline > p {
 #quotes p[indent="6"] {
   text-indent: 6em;
 }
+#quotes p[indent="6.5"] {
+  text-indent: 6.5em;
+}
 #quotes p[indent="7"] {
   text-indent: 7em;
 }
 #quotes p[indent="8"] {
   text-indent: 8em;
+}
+
+span[red]{
+  color: red;
+}
+span[bold]{
+  font-weight: bold;
 }
 
 #tags {
