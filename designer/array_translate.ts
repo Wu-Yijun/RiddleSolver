@@ -1,10 +1,10 @@
 import { ArrayDecoder } from "./array.ts";
-import { NiziCode } from "./nizi-code.ts";
+import { NiseCode } from "./nise-code.ts";
 
 Deno.test("decode tips", () => {
   const decoder = new ArrayDecoder();
   decoder.read_words(1);
-  const nizi = new NiziCode();
+  const nise = new NiseCode();
 
   // --- 01 ---
   console.log(
@@ -37,11 +37,11 @@ Deno.test("decode tips", () => {
   );
   console.log(
     "15:2",
-    nizi.sentence("58242 2806814"),
+    nise.sentence("58242 2806814"),
   );
   console.log(
     "15:3",
-    nizi.long("-19856524308934202591 "),
+    nise.long("-19856524308934202591 "),
   );
   // --- 16 ---
   console.log(
@@ -57,38 +57,78 @@ Deno.test("decode tips", () => {
   );
   console.log(
     "23:3",
-    nizi.sentence("377673303 86 -637335033 322889089943767"),
+    nise.sentence("377673303 86 -637335033 322889089943767"),
   );
   console.log(
     "23:4:1",
-    nizi.sentence("-10977 -86221 284 778 3423638 79069950"),
+    nise.sentence("-10977 -86221 284 778 3423638 79069950"),
   );
   console.log(
     "23:4:2",
-    nizi.sentence("39071447 778 123580189 134 -818590 -10977"),
+    nise.sentence("39071447 778 123580189 134 -818590 -10977"),
   );
   console.log(
     "23:4",
-    nizi.long("1442193488623282"),
+    nise.long("1442193488623282"),
   );
   console.log(
     "23:4:1",
-    nizi.long("-424677567179640188352414186753"),
+    nise.long("-424677567179640188352414186753"),
   );
   // --- 35 ---
   console.log(
     "35:2",
-    nizi.sentence("1074 -39808241 -39808241 -140 -1209 806 -427094668"),
+    nise.sentence("1074 -39808241 -39808241 -140 -1209 806 -427094668"),
   );
   console.log(
     "35:3",
-    nizi.sentence("6183 1074 -997363624 -427094668 -72227496 "),
+    nise.sentence("6183 1074 -997363624 -427094668 -72227496 "),
+  );
+  // --- 48 ---
+  console.log(
+    "48:1",
+    decoder.sentence(
+      "iSx(109) fnost(253) aer(52) isx(109) dikns(182) fo(27) eenQu(164).",
+    ),
+  );
+  console.log(
+    "48:2",
+    nise.sentence("-14195020621 -51205 -724209 130617955 4836341342."),
+  );
+  console.log(
+    "48:3",
+    nise.sentence("-1052153301 -5248984 1465120 60385 778 -82586975 45798."),
+  );
+  console.log(
+    "48:4",
+    nise.long("6868582477394290694330"),
+  );
+  // --- 54 ---
+  console.log(
+    "54:I:1",
+    decoder.sentence(
+      "eht(51) dhirt(155) airst(188) is(47) ddehin(163) bdehin(166) a(1) ehitw(171) abdor(127)",
+    ),
+  );
+  console.log(
+    "54:I:2",
+    nise.sentence(
+      "70182 778 58242 265251616 -28425503967 7296 -157737 1465120",
+    ),
+  );
+  console.log(
+    "54:II:1",
+    decoder.sentence("ehnorstu(500) fo(27) eht(51) foor(117)"),
+  );
+  console.log(
+    "54:II:2",
+    nise.sentence("-9029701 778 -59213 134 778 -1762703"),
   );
 });
 
 Deno.test("encode tips", () => {
-  const nizi = new NiziCode();
-  const num = nizi.encode_sentence_long("try waiting one hundred seconds instead");
+  const nise = new NiseCode();
+  const num = nise.encode_sentence_long("six");
   console.log(num);
-  console.log(nizi.long(num));
+  console.log(nise.long(num));
 });

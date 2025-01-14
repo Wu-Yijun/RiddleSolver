@@ -75,7 +75,7 @@ p.section-title {
   /* font-weight: bold;
   font-size: 1.2em; */
 }
-.section image, .section img {
+.section image, .section img, .img {
   display: block;
   margin: auto;
   max-width: 50%;
@@ -205,19 +205,29 @@ div.inline > p {
   cursor: pointer;
   transition: background-color 0.5s;
 }
+.button.next-riddle.clickable{
+  color: green;
+}
+.button.next-riddle.clickable:hover{
+  color: green;
+}
 .button:hover,
 .button.next-riddle.clickable:hover {
   cursor: pointer;
-  background-color: #c7f6ce;
+  background-color: #d4fbda;
   /* background-color: #c7d3f6; */
 }
+.button.blocked,
 .button.next-riddle {
-  cursor: no-drop;
+  cursor: not-allowed;
   background-color: #eee;
+  color: gray;
 }
+.button.blocked:hover,
 .button.next-riddle:hover {
-  cursor: no-drop;
+  cursor: not-allowed;
   background-color: #eee;
+  color: gray;
 }
 
 #quotes {
@@ -281,11 +291,17 @@ div.inline > p {
 #quotes p[indent="5"] {
   text-indent: 5em;
 }
+#quotes p[indent="5.5"] {
+  text-indent: 5.5em;
+}
 #quotes p[indent="6"] {
   text-indent: 6em;
 }
 #quotes p[indent="7"] {
   text-indent: 7em;
+}
+#quotes p[indent="8"] {
+  text-indent: 8em;
 }
 
 #tags {
@@ -352,6 +368,12 @@ p.encoded, span.encoded {
 .centered {
   text-align: center;
 }
+.round-border {
+  border: black 1px solid;
+  border-radius: 1em;
+  margin: 1em;
+  padding: 1em;
+}
 
 .encrypted, .encrypted p {
   font-family: "华文行楷";
@@ -402,4 +424,5 @@ ol.encrypted {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
   display: none; /* 初始隐藏 */
   max-width: 25em;
+  white-space: pre-wrap;
 }

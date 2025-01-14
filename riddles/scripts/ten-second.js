@@ -73,6 +73,7 @@ function playMusic() {
 const states = {
   inserted: false,
   broken: false,
+  preparing: null,
   ready: false,
   clicked: false,
   clickedTime: 0,
@@ -110,11 +111,12 @@ chip.onclick = function () {
     chip.innerText = "拔出 USB 供电";
     playBeepPattern(".....--");
     states.inserted = true;
-    setTimeout(() => {
+    states.preparing = setTimeout(() => {
       button.style.color = "green";
       button.style.cursor = "";
       states.ready = true;
       states.clicked = false;
+      states.preparing = null;
     }, 1000);
   } else {
     // 断电
@@ -132,13 +134,20 @@ chip.onclick = function () {
       musicSource.stop();
       musicSource = null;
     }
+    if (states.preparing) {
+      clearTimeout(states.preparing);
+      states.preparing = null;
+    }
   }
 };
 button.onclick = function () {
-  if (broken(0.05)) {
+  if (broken(0.03)) {
     return;
   }
   if (!states.ready) {
+    if (broken(0.05)) {
+      return;
+    }
     return;
   }
   if (!states.clicked) {
@@ -162,12 +171,12 @@ button.onclick = function () {
       Math.round(duration / 10000) === 100
     ) {
       // precisely the correct time!
-      playBeepPattern("..--..--..--");
+      playBeepPattern(".....--");
       setTimeout(() => {
         playBeepPattern(beepPattern);
       }, 2500);
     } else {
-      playBeepPattern(".....--");
+      playBeepPattern("..--..--..--");
     }
   }
 };

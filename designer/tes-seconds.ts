@@ -1,4 +1,4 @@
-import { NiziCode } from "./nizi-code.ts";
+import { NiseCode } from "./nise-code.ts";
 
 enum BeepType {
   Di = "di",
@@ -20,7 +20,7 @@ class DiDah {
   static Dah(): Beep {
     return [BeepType.Dah, DahLength, DiDahSleep];
   }
-  private nizi: NiziCode = new NiziCode();
+  private nise: NiseCode = new NiseCode();
   constructor() {
   }
 
@@ -67,7 +67,7 @@ class DiDah {
         if (match[1]) {
           const chars = match[1];
           for (const char of chars) {
-            const code = this.nizi.encode_char(char);
+            const code = this.nise.encode_char(char);
             for (const c of code) {
               if (c === "0") {
                 beep.push(DiDah.Di());

@@ -1,4 +1,4 @@
-import { NiziCode } from "./nizi-code.ts";
+import { NiseCode } from "./nise-code.ts";
 
 const hexagram_path = "./designer/assets/hexagram.txt";
 const hexagram_post_path = "./designer/assets/hexagram-post.txt";
@@ -75,16 +75,16 @@ Deno.test("hexagram test", () => {
 
   const binary = hexagram.decode(str);
   console.log(binary);
-  const nizi = new NiziCode();
-  console.log(nizi.binary(binary));
+  const nise = new NiseCode();
+  console.log(nise.binary(binary));
 
-  const binary2 = nizi.encode_binary(
+  const binary2 = nise.encode_binary(
     "smallbottleinabandonedfactorynearwindow".toUpperCase(),
   );
   console.log(binary2);
   // const str = "否履需贲损困涣革晋离夬贲明夷渐复恒涣晋丰临巽井";
   // for (let i = 0; i < str.length; i++) {
   //   const word = str.slice(i) + str.slice(0, i);
-  //   console.log(i, nizi.binary(hexagram.decode(word)));
+  //   console.log(i, nise.binary(hexagram.decode(word)));
   // }
 });

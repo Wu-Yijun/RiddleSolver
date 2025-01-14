@@ -18,9 +18,15 @@ function main() {
     const check = checker.getElementsByClassName("button")[0];
     const notes = checker_box.getElementsByClassName("answer-notes")[0];
     const result = checker.getAttribute("answer");
+    const const_accuracy = checker.getAttribute("accuracy");
     const check_answer = function () {
-      const accuracy = get_accuracy(answer.innerText, result);
       localStorage.setItem(key, answer.innerText.trim());
+      if (const_accuracy) {
+        info.innerText = `匹配度 ${const_accuracy}%`;
+        info.style.color = "orange";
+        return;
+      }
+      const accuracy = get_accuracy(answer.innerText, result);
       if (accuracy != 100) {
         info.innerText = `匹配度 ${accuracy.toFixed(0)}%`;
         info.style.color = "orange";

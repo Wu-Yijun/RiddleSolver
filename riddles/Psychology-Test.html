@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>54. Psychology Test | 心理测试</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/mmpi-test.css">
+    <id>54</id>
+    <script src="./scripts/notes.js"></script>
+    <script src="./scripts/verify.js"></script>
+    <script src="./scripts/mmpi-test.js"></script>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="info-box"></div>
+    <div id="main">
+      <h1 class="title" title="心理测试">
+        <span class="initial">M</span>MPI&emsp;&emsp;
+        <span class="initial">T</span>est
+      </h1>
+      <div class="section manipulate round-border">
+        <div
+          id="mmpi-button"
+          class="button centered"
+          style="width: 40%; margin: auto"
+        >
+          开始测试
+        </div>
+        <div class="mmpi-test loading">
+          <div id="mmpi-test-content" class="page">
+            <h1 class="title">
+              <span class="initial">M</span>MPI&emsp;&emsp;
+              <span class="initial">T</span>est
+            </h1>
+            <p>
+              请用 "<strong>是□</strong>" "<strong>否□</strong>" 回答以下问题:
+            </p>
+            <ol class="mmpi-test-questions">
+            </ol>
+          </div>
+          <div id="mmpi-pen">
+            <img src="./assets/pen_all.png" id="pen_all" />
+            <img src="./assets/pen_cap.png" id="pen_cap" />
+            <img src="./assets/pen.png" id="pen" />
+            <img src="./assets/pen_head.png" id="pen_head" />
+            <img src="./assets/pen_tail.png" id="pen_tail" />
+            <img src="./assets/paper_roll.png" id="paper_roll" />
+          </div>
+        </div>
+      </div>
+
+      <div id="checkers" both="true">
+        <h4 class="title">
+          输入并检查答案
+        </h4>
+        <div class="checker-box">
+          <div class="checker" accuracy="0.0">
+            <p
+              class="answer-info hv0 hv1 inline"
+              title="你现在不应该输入答案, 请再想想, 去前面看看, 找找线索"
+              hv1="你现在不应该输入答案, 请再想想, 去前面看看, 找找线索"
+            >
+              Answer
+            </p>
+            <div contenteditable="true" class="answer"></div>
+            <div class="button">Check</div>
+          </div>
+          <p class="answer-notes inline">
+            下一个迷题藏在假山的监控旁, 杆子所在的地下
+          </p>
+        </div>
+
+        <div id="checkers-notes">
+          <p>
+            你知道吗, 这一题有两个网页. 你目前所在的网页不是真正的网页,
+            因此也无法链接到下一题.
+          </p>
+          <p>
+            而且你要知道, 上面的输入检查框是骗人的, 它没有正确答案, 只会显示
+            '匹配度 0.0%'. 所以理论上你看不到这段话, 除非你打开了控制台.
+          </p>
+          <p>
+            顺带一提, 下面的按钮也是骗人的, 它们不会带你去下一题, 只会回到此页.
+          </p>
+          <p>
+            既然你找不到思路, 想要跳过这一题了, 我就大发慈悲告诉你方法吧:
+            点开答题纸, 打开笔帽, 反复点击笔身以旋开, 然后取出里面的纸条...
+          </p>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div class="l button" onclick="window.location.href='./list.html'">
+          <p>
+            &lt;&lt;&lt; 迷题列表
+          </p>
+        </div>
+        <div class="r button next-riddle" riddle="Psychology-Test">
+          <p>
+            65 &gt;&gt;&gt;
+          </p>
+        </div>
+        <div class="r button next-riddle" riddle="Psychology-Test">
+          <p>
+            89 &gt;&gt;&gt;
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

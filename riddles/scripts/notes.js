@@ -1,20 +1,31 @@
+
+
 function main() {
   const hv1s = document.getElementsByClassName("hv1");
   const hv2s = document.getElementsByClassName("hv2");
   const infoBox = document.getElementById("info-box");
+  function showNotes(event, notes) {
+    infoBox.innerText = notes; // 显示信息
+    infoBox.style.display = "block"; // 显示文本框
+    // 获取鼠标点击位置
+    const mouseX = event.pageX;
+    const mouseY = event.pageY;
+    // 确保文本框底边在窗口显示之内
+    const infoBoxHeight = infoBox.offsetHeight;
+    const windowHeight = globalThis.innerHeight + globalThis.scrollY;
+    if (mouseY + 10 + infoBoxHeight > windowHeight) {
+      infoBox.style.top = `${windowHeight - infoBoxHeight - 10}px`; // 向上移动
+    }else{
+      infoBox.style.top = `${mouseY + 10}px`; // 鼠标下方 10px
+    }
+    // 设置文本框位置
+    infoBox.style.left = `${mouseX + 10}px`; // 鼠标右侧 10px
+  }
   for (const dom of hv1s) {
     // console.log(dom);
     const hv1 = dom.getAttribute("hv1");
     dom.addEventListener("click", function (event) {
-      // 获取鼠标点击位置
-      const mouseX = event.pageX;
-      const mouseY = event.pageY;
-
-      // 设置文本框位置
-      infoBox.style.left = `${mouseX + 10}px`; // 鼠标右侧 10px
-      infoBox.style.top = `${mouseY + 10}px`; // 鼠标下方 10px
-      infoBox.style.display = "block"; // 显示文本框
-      infoBox.innerText = hv1; // 显示信息
+      showNotes(event, hv1);
     });
 
     // 监听鼠标移出 pop 元素
@@ -40,15 +51,7 @@ function main() {
     // console.log(dom);
     const hv2 = dom.getAttribute("hv2");
     dom.addEventListener("dblclick", function (event) {
-      // 获取鼠标点击位置
-      const mouseX = event.pageX;
-      const mouseY = event.pageY;
-
-      // 设置文本框位置
-      infoBox.style.left = `${mouseX + 10}px`; // 鼠标右侧 10px
-      infoBox.style.top = `${mouseY + 10}px`; // 鼠标下方 10px
-      infoBox.style.display = "block"; // 显示文本框
-      infoBox.innerText = hv2; // 显示信息
+      showNotes(event, hv2);
     });
 
     // 监听鼠标移出 pop 元素

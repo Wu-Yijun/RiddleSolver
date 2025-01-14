@@ -1,14 +1,14 @@
-import { NiziCode } from "./nizi-code.ts";
+import { NiseCode } from "./nise-code.ts";
 import { ArrayDecoder } from "./array.ts";
 
 Deno.test("wifi password", () => {
-  const nizi = new NiziCode();
+  const nise = new NiseCode();
   const decoder = new ArrayDecoder();
   decoder.read_words(1);
   const candidate: [string, boolean, string, boolean, number][] = [];
   for (let x = 0; x < 100; x++) {
-    const word1 = nizi.word(-14549065807383 + x);
-    const word2 = nizi.word(402866312956 + x);
+    const word1 = nise.word(-14549065807383 + x);
+    const word2 = nise.word(402866312956 + x);
     if (word1.includes("[]") || word2.includes("[]")) {
       continue;
     }

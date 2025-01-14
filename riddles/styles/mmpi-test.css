@@ -1,0 +1,105 @@
+.mmpi-test {
+  background-color: #2228;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-top: 4em;
+  padding-bottom: 4em;
+
+  display: none;
+}
+.mmpi-test.loading {
+  display: block;
+  visibility: hidden;
+}
+.mmpi-test.active {
+  display: block;
+}
+
+.mmpi-test > div {
+  margin: 2em auto;
+  width: calc(70vw - 8.4vw);
+  height: calc(100vw - 8.4vw);
+  background-color: #fff;
+  box-shadow: 0 0 1em #000;
+  padding: 4.2vw;
+}
+
+.mmpi-test-questions p {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  flex-direction: row;
+  column-gap: 2em;
+}
+.mmpi-test-questions .True {
+  margin-left: auto;
+}
+.True, .False {
+  color: darkblue;
+  user-select: none;
+  cursor: pointer;
+}
+
+.True::after, .False::after {
+  content: "□";
+}
+
+.True:hover, .False:hover {
+  text-shadow: darkblue 1px 0px 1px;
+}
+
+.True.selected::after,
+.False.selected::after {
+  content: "■";
+}
+
+#mmpi-pen{
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: unset;
+  box-shadow: unset;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  user-select: none;
+  width: 0;
+  height: 0;
+}
+
+#mmpi-pen img{
+  position: absolute;
+  max-width: unset;
+  min-width: unset;
+  width: 200px;
+  height: 200px;
+  display: none;
+  user-select: auto;
+  pointer-events: all;
+  transition: top 0.5s ease-out, left 0.5s ease-out;
+}
+#mmpi-pen img.picked{
+  transition: none;
+}
+#mmpi-pen img#paper_roll {
+  width: 50px;
+  height: 50px;
+  /* display: block; */
+  transition: all 1s ease-in-out;
+  cursor: pointer;
+}
+#paper_roll:hover{
+  transform: scale(1.2);
+}
+
+li:hover{
+  background-color: rgb(220, 255, 255);
+}
