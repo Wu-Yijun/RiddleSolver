@@ -337,6 +337,12 @@ span[keyword] {
     "WenQuanYi Micro Hei",
     sans-serif;
 }
+span[over] {
+  text-decoration: overline;
+}
+span[line] {
+  text-decoration: underline;
+}
 .curlicue {
   font-family:
     "Monotype Corsiva",
@@ -356,7 +362,7 @@ div.header {
 div.header::after {
   content: ":";
 }
-p.header{
+p.header {
   text-indent: 0;
   font-size: 1.1em;
   font-weight: bold;

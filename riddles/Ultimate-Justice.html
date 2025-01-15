@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>49. Ultimate Justice | 绝对正义</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <id>49</id>
+    <script src="./scripts/notes.js"></script>
+    <script src="./scripts/verify.js"></script>
+  </head>
+
+  <body>
+    <header></header>
+    <div id="info-box"></div>
+    <div id="main">
+      <h1 class="title" title="迷题49 绝对正义">
+        <span class="initial">R</span>iddle 98&emsp;&emsp;
+        <span class="initial">U</span>ltimate
+        <span class="initial">J</span>ustice
+      </h1>
+      <div class="section">
+        <p>
+          这里有四个小人, 还有五块饼干. 很明显, 小人会为了谁吃两块饼干,
+          谁吃一块饼干而争执不休. 因为, 不论谁吃两块饼干, 都是不公平的!
+        </p>
+        <img
+          src="./assets/ultimate-justice-sample.jpg"
+          alt="ultimate-justice-sample"
+          style="max-width: 50vw"
+        >
+        <p>
+          为此, 我们可以在 x= 3/2 和 x=13/4 处切两刀(如图所示), 这样,
+          五块饼干就可以平均分给众人了.
+        </p>
+      </div>
+      <div class="section">
+        <p>
+          但是, 一口气切两刀太费时费力了, 我们需要更简单的方法。
+        </p>
+        <p>
+          Riddolver, 请设计一种切法. 使得在切过一刀之后, 局面会变得公平起来,
+          小人可以平分饼干.
+        </p>
+        <p>
+          切口的方程为 y=ax+b . 记 N<sub>0</sub> 为方程 <span
+            class="hv1"
+            hv1="笑死我了, 方程我当时化简错了, 现在只好改原方程了(a/2)..."
+          >a/2 x<sup>2</sup>-bx+1=0</span>
+          的正根, 令 P(n<sub>0</sub>, l) 表示从 N<sub>0</sub> 小数点后第 n<sub
+          >0</sub> 位开始，向后 (l-1) 位的字符集
+        </p>
+        <p class="inline encoded">
+          如: 对于 N<sub>0</sub>=√<span over>2</span>, P(1,3)=1.<span line
+          >414</span>21=414
+        </p>
+        <p>
+          加密的地点, 就在眼前, 可望而不可即.
+        </p>
+        <p class="centered encoded" style="font-size: 1em">
+          办公楼 P(223,3)号房间抽屉里
+        </p>
+      </div>
+
+      <div id="quotes">
+        <p indent="2">所谓正义,</p>
+        <p indent="6">不过是胜者的自称.</p>
+      </div>
+
+      <div class="section">
+        <h4 class="title">
+          Tips
+        </h4>
+        <ol class="encrypted">
+          <li value="0">
+            <p
+              class="hv1 hv2"
+              title="(单击转写)(双击翻译+吐槽)"
+              hv1="Cut a person for fair."
+              hv2="切死一个小人, 这样就能均分了.&#10;&#10;(吐槽) 切死小人真的算是公平吗?"
+            >
+              Ctu(105) a(1) enoprs(315) for(90) afir(107).
+            </p>
+          </li>
+          <li>
+            <p
+              class="hv1 hv2"
+              title="(单击转写)(双击翻译)"
+              hv1="The line goes across y axis at one unit in y height."
+              hv2="这条线穿过 y 轴, 截距为 1 ."
+            >
+              778 46002 78883 21301299 39 719475 86 1074 -56513 -137 39
+              -15404273.
+            </p>
+          </li>
+        </ol>
+      </div>
+
+      <div id="tags">
+        <p>
+          <span class="tag-name" title="编号">ID:</span>
+          49
+        </p>
+        <p>
+          <span class="tag-name" title="代号">Code:</span>
+          <span title="只要均等, 就是正义!">Just(is) for fair</span>
+        </p>
+      </div>
+
+      <div id="checkers" both="true">
+        <h4 class="title">
+          输入并检查答案
+        </h4>
+        <div class="checker-box">
+          <div class="checker" answer="608">
+            <p
+              class="answer-info hv0 inline"
+              title="本题请回答三个数字"
+            >
+              房间号为
+            </p>
+            <div contenteditable="true" class="answer"></div>
+            <div class="button">Check</div>
+          </div>
+          <p class="answer-notes inline">
+            Final Letter 就在办公楼 608 房间内的讲台里.
+          </p>
+        </div>
+
+        <div id="checkers-notes">
+          <p>
+            终于, 要接近尾声了. 你已经完成了必要的全部迷题,
+            准备要去终点与我们相会了.
+          </p>
+          <p>
+            之前在 民法典(Law) 一题中, 我们抛弃了公平, 以实用为首要最求.
+            在最后的最后, 在这一题, 我们又回归了正义, 将公平牢记于心.
+            公平与正义, 底线真的如此灵活吗?
+          </p>
+          <p>
+            在公平无法达成时, 我们究竟要尽可能让人满意,
+            还是消除产生不公平的漏洞呢?
+          </p>
+          <p>
+            此题难度有一些, 但只要避开两个思维盲区, 基本是可以轻松拿下的.
+            切割方法如下图所示
+          </p>
+          <img src="assets/ultimate-justice-answer.jpg" class="img">
+          <p>
+            首先, 切掉一人. 然后将下方的两个矩形分成 2/3 2/3 1/3 1/3 四块,
+            正好可以分给三人. 直线的方程为 y = -2/9x + 1 . 因此二次方程的正根为:
+          </p>
+          <p class="encoded">
+            x = 3/4 (√<span over>17</span> - 3)
+          </p>
+          <p>
+            最终可求得
+          </p>
+          <p class="encoded">
+            P(233, 3) = 0.908...819<span line>608</span>169... = 608
+          </p>
+        </div>
+      </div>
+
+      <div id="footer">
+        <div class="l button" onclick="window.location.href='./list.html'">
+          <p>
+            &lt;&lt;&lt; 迷题列表
+          </p>
+        </div>
+        <div class="r button next-riddle" riddle="Final-Letter">
+          <p>
+            99. Final Letter &gt;
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

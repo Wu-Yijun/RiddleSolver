@@ -170,8 +170,43 @@ Deno.test("decode tips", () => {
       "ggiinv(239) pu(53) is(47) ceelrv(263) ",
     ),
   );
+  // --- 98 ---
+  console.log(
+    "98:0",
+    decoder.sentence(
+      "Ctu(105) a(1) enoprs(315) for(90) afir(107).",
+    ),
+  );
+  console.log(
+    "98:1",
+    nise.sentence(
+      "778 46002 78883 21301299 39 719475 86 1074 -56513 -137 39 -15404273.",
+    ),
+  );
 });
 
+Deno.test("decode answer", () => {
+  const decoder = new ArrayDecoder();
+  decoder.read_words(1);
+  const nise = new NiseCode();
+
+  console.log("--- 24 ---");
+  const x24 = 461;
+  console.log(
+    "24:1",
+    nise.sentence(
+      `Go to Grade ${-724670 + x24} Class ${98885 + x24} in ${
+        8458 + x24
+      } building.`,
+    ),
+  );
+  console.log(
+    "24:2",
+    nise.sentence(
+      `Open the controller box of the ${6873 + x24}.`,
+    ),
+  );
+});
 Deno.test("encode tips", () => {
   const nise = new NiseCode();
   const num = nise.encode_sentence_long("six");
