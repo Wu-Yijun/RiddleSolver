@@ -70,6 +70,16 @@ h4.title {
   margin-bottom: 0.5em;
   text-indent: 2em;
 }
+
+.subsection {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+.subsection > p {
+  text-indent: 2em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
 p.section-title {
   text-indent: 0;
   /* font-weight: bold;
@@ -102,6 +112,7 @@ p.section-title {
   margin-bottom: 1em;
 }
 .checker {
+  /* margin-bottom: 10px; */
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -205,10 +216,10 @@ div.inline > p {
   cursor: pointer;
   transition: background-color 0.5s;
 }
-.button.next-riddle.clickable{
+.button.next-riddle.clickable {
   color: green;
 }
-.button.next-riddle.clickable:hover{
+.button.next-riddle.clickable:hover {
   color: green;
 }
 .button:hover,
@@ -307,15 +318,53 @@ div.inline > p {
   text-indent: 8em;
 }
 
-span[red]{
+span[red] {
   color: red;
 }
-span[bold]{
+span[bold] {
   font-weight: bold;
 }
-
+span[keyword] {
+  font-weight: bold;
+  font-family:
+    "Microsoft YaHei",
+    "Heiti SC",
+    "PingFang SC",
+    Helvetica,
+    Tahoma,
+    Arial,
+    "Hiragino Sans GB",
+    "WenQuanYi Micro Hei",
+    sans-serif;
+}
+.curlicue {
+  font-family:
+    "Monotype Corsiva",
+    "Kunstler Script",
+    "Script MT Bold",
+    "Edwardian Script ITC",
+    "Comic Sans MS",
+    "华文行楷";
+  font-weight: normal;
+  font-size: 2em;
+}
+div.header {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 2em;
+}
+div.header::after {
+  content: ":";
+}
+p.header{
+  text-indent: 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
 #tags {
-  font-family: "Comic Sans MS";
+  font-family: "Comic Sans MS", "Segoe Script";
   text-align: end;
   margin-bottom: 2em;
 }

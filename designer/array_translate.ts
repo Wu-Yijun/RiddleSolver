@@ -157,6 +157,19 @@ Deno.test("decode tips", () => {
       "50333935494 -140 -19557 -108357 ",
     ),
   );
+  // --- 89 ---
+  console.log(
+    "89:1:1",
+    decoder.sentence(
+      "i(9) acnnot(298) ehlp(118) ouy(118)",
+    ),
+  );
+  console.log(
+    "89:1:2",
+    decoder.sentence(
+      "ggiinv(239) pu(53) is(47) ceelrv(263) ",
+    ),
+  );
 });
 
 Deno.test("encode tips", () => {
@@ -164,5 +177,5 @@ Deno.test("encode tips", () => {
   const num = nise.encode_sentence_long("six");
   console.log(num);
   console.log(nise.long(num));
-  console.log(nise.encode_sentence_long("translate"));
+  console.log(nise.encode_sentence_long("Enter room zero eight"));
 });
