@@ -24,14 +24,14 @@
           三者之中的一个.
         </p>
         <p>
-          你需要找出所有装有糖的离心管, 并将上面的数字 <strong>从小到大</strong>
-          排列.
+          你需要找出所有装有盐的离心管, 并将它们的序号 <strong>从小到大</strong>
+          排列. 然后找出所有装有糖的离心管, 也将序号 <strong>从小到大</strong> 排列.
         </p>
         <p class="encoded centered">
-          X = 第1个数字
+          X = 盐第2个数字
         </p>
         <p class="encoded centered">
-          Y = 第4个数字
+          Y = 糖第4个数字
         </p>
       </div>
 
@@ -54,6 +54,396 @@
           以及:<br>
           &emsp;KCN 的致死量是 50~100mg (对人) , 对动物更低.<br>
         </p>
+      </div>
+
+      <div
+        class="section manipulate round-border"
+        style="margin-left: 0; margin-right: 0; padding-left: 0; padding-right: 0"
+      >
+        <h3
+          class="start title hv0 hv1"
+          style="margin-top: 0"
+          title="区分粉末"
+          hv1="纸质版没有这部分, 因为我们提供了一个盒子, 里面装有10支离心管."
+        >
+          实验区域:
+        </h3>
+        <div id="tube-case" class="round-border">
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube0"
+            class="l"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube1"
+            class="r"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube2"
+            class="l"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube3"
+            class="r"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube4"
+            class="l"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube5"
+            class="r"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube6"
+            class="l"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube7"
+            class="r"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube8"
+            class="l"
+          />
+          <img
+            src="./assets/life-for-riddle.png"
+            alt="离心管"
+            id="tube9"
+            class="r"
+          />
+        </div>
+        <h2 class="title" id="tube-info">未选择</h2>
+        <div class="buttons">
+          <div class="button" id="look">观察一下</div>
+          <div class="button" id="smell">闻一闻</div>
+          <div class="button" id="taste">舔一点</div>
+          <div class="button" id="all-in" style="color: red; font-weight: bold">
+            All in !!!
+          </div>
+        </div>
+        <style>
+          #tube-case {
+            display: flex;
+            margin: auto;
+            width: 50vw;
+            column-gap: 6vw;
+            flex-direction: row;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: space-around;
+            align-items: center;
+          }
+          #tube-case img {
+            width: 16vw;
+            max-width: 16vw;
+            min-width: 16vw;
+            /* height: auto; */
+            transition: transform 0.5s;
+            z-index: 1;
+          }
+          #tube-case img.r {
+            scale: -1 1;
+          }
+          #tube-case img.selected,
+          #tube-case img:hover {
+            transform: scale(1.8) translateX(6vw) rotate(72deg);
+          }
+          #tube-info {
+            position: relative;
+            z-index: 100;
+          }
+          .manipulate .button {
+            display: inline-block;
+            margin: 0;
+            width: 10vw;
+            text-align: center;
+          }
+          .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            column-gap: 3vw;
+          }
+          .shaky-text {
+            animation: shake 0.25s infinite;
+            /* 你可以根据需要调整动画的持续时间和迭代次数 */
+          }
+          @keyframes shake {
+            0%, 100% {
+              transform: translateX(0);
+            }
+            25% {
+              transform: translateX(-3px);
+            }
+            75% {
+              transform: translateX(3px);
+            }
+          }
+        </style>
+        <script>
+          function main() {
+            const tube_state = {
+              selected: -1,
+              looked: -1,
+              over_looked: -1,
+              smelled: -1,
+              over_smelled: -1,
+              tasted: -1,
+              over_tasted: -1,
+              taste_num: 0,
+              all_in: -1,
+            };
+            /** 0: 盐, 1: 糖, 2: KCN */
+            const contents = [0, 1, 1, 1, 1, 0, 0, 0, 0, 1];
+            const tubes =
+              document.getElementById("tube-case").children;
+            const info = document.getElementById("tube-info");
+            function shake_info(text) {
+              info.innerHTML = text;
+              info.classList.add("shaky-text");
+              setTimeout(() => {
+                info.classList.remove("shaky-text");
+              }, 500);
+            }
+            for (let i = 0; i < 10; i++) {
+              tubes[i].onclick = () => {
+                if (tube_state.selected === i) {
+                  tube_state.selected = -1;
+                  info.innerText = "未选择";
+                  tubes[i].classList.remove("selected");
+                  return;
+                }
+                tube_state.selected = i;
+                info.innerText = `已选择第 ${i} 只离心管`;
+                // shake_info(`已选择第 ${i} 只离心管`);
+                for (let j = 0; j < 10; j++) {
+                  tubes[j].classList.remove("selected");
+                }
+                tubes[i].classList.add("selected");
+                tube_state.over_looked = -1;
+                tube_state.over_smelled = -1;
+                tube_state.over_tasted = -1;
+                console.log(tube_state.all_in);
+                if (tube_state.all_in < 0) {
+                  tube_state.all_in = -1;
+                } else {
+                  tube_state.all_in = 2;
+                }
+              };
+            }
+            document.getElementById("look").onclick = () => {
+              if (tube_state.selected === -1) {
+                // info.innerText = "请先选择一只离心管";
+                shake_info("请先选择一只离心管");
+                return;
+              }
+              if (tube_state.over_looked === -1) {
+                let cannot_discriminate;
+                if (tube_state.looked !== tube_state.selected) {
+                  info.innerText = tube_state.selected +
+                    " 号: 看不出是什么";
+
+                  tube_state.looked = tube_state.selected;
+                  cannot_discriminate = 0.9;
+                } else {
+                  shake_info(
+                    tube_state.selected + " 号: 还是看不出是什么",
+                  );
+                  cannot_discriminate = 0.8;
+                }
+                if (Math.random() > cannot_discriminate) {
+                  const real = 0.3 + (1 - cannot_discriminate);
+                  const kcn = (1 - cannot_discriminate) * 1.5;
+                  const fake = 1 - real - kcn;
+                  const result = Math.random();
+                  if (result < real) {
+                    tube_state.over_looked =
+                      contents[tube_state.selected];
+                  } else if (result < real + fake) {
+                    tube_state.over_looked = 1 -
+                      contents[tube_state.selected];
+                  } else {
+                    tube_state.over_looked = 2;
+                  }
+                }
+              }
+              switch (tube_state.over_looked) {
+                case 0:
+                  shake_info(tube_state.selected + " 号: 似乎是盐");
+                  break;
+                case 1:
+                  shake_info(tube_state.selected + " 号: 好像是糖");
+                  break;
+                case 2:
+                  shake_info(
+                    tube_state.selected + " 号: 该不会是氰化钾吧?",
+                  );
+                  break;
+              }
+            };
+            document.getElementById("smell").onclick = () => {
+              if (tube_state.selected === -1) {
+                shake_info("请先选择一只离心管");
+                return;
+              }
+              if (tube_state.over_smelled != 0) {
+                if (tube_state.smelled !== tube_state.selected) {
+                  info.innerText = tube_state.selected +
+                    " 号: 不太确定, 再闻闻";
+                  tube_state.smelled = tube_state.selected;
+                  tube_state.over_smelled = -1;
+                } else {
+                  shake_info(
+                    tube_state.selected + " 号: 心里没底, 再多闻闻",
+                  );
+                  tube_state.over_smelled -= 1;
+                }
+                // 0.3, 0.65, 0.76, 0.79, ...
+                if (
+                  Math.random() <
+                    (1 + 0.7 / tube_state.over_smelled)
+                ) {
+                  if (
+                    Math.random() >
+                      (-tube_state.over_smelled - 1) / 6
+                  ) {
+                    tube_state.over_smelled = 0;
+                  } else {
+                    tube_state.over_smelled = 1;
+                  }
+                }
+              }
+              switch (tube_state.over_smelled) {
+                case 0:
+                  shake_info(
+                    tube_state.selected +
+                      " 号: 现在闻起来似乎没味道",
+                  );
+                  break;
+                case 1:
+                  shake_info(
+                    tube_state.selected +
+                      " 号: 是错觉吗, 隐约感觉有苦杏仁味",
+                  );
+                  break;
+              }
+            };
+            document.getElementById("taste").onclick = () => {
+              if (tube_state.selected === -1) {
+                // info.innerText = "请先选择一只离心管";
+                shake_info("请先选择一只离心管");
+                return;
+              }
+              tube_state.taste_num += 1;
+              if (contents[tube_state.selected] === 0) {
+                if (tube_state.over_tasted === -1) {
+                  if (
+                    Math.random() >
+                      0.9 - tube_state.taste_num * 0.03
+                  ) {
+                    shake_info(
+                      tube_state.selected +
+                        " 号: 坏了, 没尝出味道, 不会是氰化钾吧?",
+                    );
+                    return;
+                  }
+                }
+                shake_info(
+                  tube_state.selected + " 号: 有一丝咸味, 似乎是盐",
+                );
+                tube_state.over_tasted = 0;
+              } else {
+                if (tube_state.over_tasted === -1) {
+                  if (
+                    Math.random() >
+                      0.8 - tube_state.taste_num * 0.05
+                  ) {
+                    shake_info(
+                      tube_state.selected +
+                        " 号: 坏了, 没尝出味道, 不会是氰化钾吧?",
+                    );
+                    return;
+                  }
+                }
+                shake_info(
+                  tube_state.selected +
+                    " 号: 有一点甜甜的, 似乎是糖",
+                );
+                tube_state.over_tasted = 0;
+              }
+            };
+            document.getElementById("all-in").onclick = () => {
+              if (tube_state.selected === -1) {
+                // info.innerText = "请先选择一只离心管";
+                shake_info("请先选择一只离心管");
+                return;
+              }
+              if (tube_state.all_in === -1) {
+                shake_info(
+                  "<span red bold>你真的确定要直接吃一管吗?</span>",
+                );
+                tube_state.all_in = -2;
+                return;
+              }
+              if (tube_state.all_in === -2) {
+                document.getElementById("all-in").innerText =
+                  "全放嘴里";
+                tube_state.all_in = 2;
+              }
+              if (tube_state.all_in === 2) {
+                tube_state.all_in = Math.random();
+              }
+              if (contents[tube_state.selected] === 0) {
+                if (tube_state.all_in < 0.8) {
+                  shake_info(
+                    "呸呸呸, 咸死了, 是盐!",
+                  );
+                } else if (tube_state.all_in < 0.9) {
+                  shake_info(
+                    "<span red bold>坏了, 太咸了, 快给我水!</span>",
+                  );
+                } else {
+                  shake_info(
+                    "<span orange>不会吧, 真是 NaCl 啊, 太难吃了!</span>",
+                  );
+                }
+              } else {
+                if (tube_state.all_in < 0.8) {
+                  shake_info(
+                    "好甜! 是白糖.",
+                  );
+                } else if (tube_state.all_in < 0.9) {
+                  shake_info(
+                    "<span green bold>嗓子要甜的烧掉了, 太腻了!</span>",
+                  );
+                } else {
+                  shake_info(
+                    "<span blue>万幸万幸, 不是盐, 是糖.</span>",
+                  );
+                }
+              }
+            };
+          }
+          main();
+        </script>
       </div>
 
       <div
@@ -116,8 +506,8 @@
           输入并检查答案
         </h4>
         <div class="checker-box">
-          <div class="checker" answer="X=1">
-            <p class="answer-info inline" title="答案以 Y= 开头">
+          <div class="checker" answer="X=5">
+            <p class="answer-info inline" title="答案以 X= 开头">
               请输入 X=?
             </p>
             <div contenteditable="true" class="answer"></div>
@@ -170,7 +560,14 @@
           </p>
           <p>
             话说回来, 其实没那么吓人, 糖和盐基本是可目测区分的.
-            可先假设只有糖和盐, 得出 X Y 的试探解, 然后到 87 题去验证就可以了.
+            可先假设只有糖和盐, 得出 X Y 的试探解, 然后到 89 题去验证就可以了.
+            纸质版的 89 题和本题的题目是放在一起的, 虽然我们本想分开放,
+            这样你就需要分别找到两个题目, 才能完成 89 题, 但设计时没有设计指向
+            89 题线索, 最后就放在一起了.
+          </p>
+          <p>
+            不过这题还有一个坑, 离心管上没标序号, 是标在盒子上的,
+            如果你拿出来弄乱了, 分不清它们的原来的位置 那么恭喜你, 你卡关了!
           </p>
         </div>
       </div>
@@ -183,7 +580,7 @@
         </div>
         <div class="r button next-riddle" riddle="Treasure-Hunter">
           <p>
-            需要与 89 题联合分析, 才能到 99 题 &gt;
+            89. Treasure Hunter &gt;
           </p>
         </div>
       </div>

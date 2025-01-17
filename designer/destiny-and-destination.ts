@@ -16,9 +16,9 @@ class Hexagram {
     for (let i = 0; i < this.hexagrams.length; i++) {
       // let binary = ((i + 1) % 64).toString(2).padStart(6, "0");
       let binary = i.toString(2).padStart(6, "0");
-      binary = binary.split("").map((x) => x === "0" ? "1" : "0").join("");
+      // binary = binary.split("").map((x) => x === "0" ? "1" : "0").join("");
       // binary = binary.split("").reverse().join("");
-      console.log(this.hexagrams[i], binary);
+      // console.log(this.hexagrams[i], binary);
       this.to_binary.set(this.hexagrams[i], binary);
       this.to_hexagram.set(binary, this.hexagrams[i]);
     }
@@ -67,24 +67,22 @@ class Hexagram {
 }
 
 Deno.test("hexagram test", () => {
-  const hexagram = new Hexagram();
-  // console.log(hexagram.hexagrams);
+  const hexagram = new Hexagram("./designer/assets/hexagram.txt");
+  // console.log(hexagram.to_hexagram);
+  const nise = new NiseCode();
 
-  const str = "否履需贲损困涣革晋离夬贲明夷渐复恒涣晋丰临巽井";
+  // const str = "否履需贲损困涣革晋离夬贲明夷渐复恒涣晋丰临巽井";
   // const str = "否履小畜鼎损丰豫损观谦归妹蒙坤噬嗑随同人临巽井";
+  const str = "蛊解萃晋未济渐涣讼颐革解讼师豫乾讼井大壮鼎";
 
   const binary = hexagram.decode(str);
   console.log(binary);
-  const nise = new NiseCode();
   console.log(nise.binary(binary));
+  // console.log(nise.binary("000111111"));
 
   const binary2 = nise.encode_binary(
-    "smallbottleinabandonedfactorynearwindow".toUpperCase(),
+    "neartheabandonfactorywindow".toUpperCase(),
   );
   console.log(binary2);
-  // const str = "否履需贲损困涣革晋离夬贲明夷渐复恒涣晋丰临巽井";
-  // for (let i = 0; i < str.length; i++) {
-  //   const word = str.slice(i) + str.slice(0, i);
-  //   console.log(i, nise.binary(hexagram.decode(word)));
-  // }
+  console.log(hexagram.encode(binary2));
 });

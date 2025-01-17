@@ -182,6 +182,20 @@ class NiseCode {
       (s) => this.encode_binary(s.toUpperCase()),
     );
   }
+  encode_sentence_dec(line: string): string {
+    return line.replaceAll(
+      /[a-zA-Z]+/g,
+      (s) => {
+        const binary = this.encode_binary(s.toUpperCase());
+        const is_neg = binary[0] === '0';
+        const binary_code = is_neg
+          ? binary.split("").map((s) => s === "0" ? "1" : "0").join("")
+          : binary;
+        const digit = BigInt("0b" + binary_code);
+        return is_neg ? "-" + digit.toString() : digit.toString();
+      },
+    );
+  }
   encode_sentence_long(line: string): string {
     const binary = line.toUpperCase().matchAll(/[A-Z]+/g)
       .reduce((acc, match) => acc + this.encode_binary(match[0]), "");

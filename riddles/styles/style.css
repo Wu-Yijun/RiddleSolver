@@ -321,8 +321,20 @@ div.inline > p {
 span[red] {
   color: red;
 }
+span[orange] {
+  color: orange;
+}
+span[green] {
+  color: green;
+}
+span[blue] {
+  color: blue;
+}
 span[bold] {
   font-weight: bold;
+}
+span[italic] {
+  font-style: italic;
 }
 span[keyword] {
   font-weight: bold;

@@ -14,13 +14,46 @@
     <div id="main">
       <h1 class="title" title="迷题24 道路与命运">
         <span class="initial">R</span>iddle 24&emsp;&emsp;
-        <span class="initial">N</span>umber
+        <span class="initial">D</span>ensity and
+        <span class="initial">D</span>estination
       </h1>
       <div class="section">
-        <img
-          src="./assets/destiny-and-destination.jpg"
-          alt="destiny-and-destination"
-        />
+        <div class="circular">
+          <svg viewBox="0 0 100 100">
+            <!-- <path d="M 0,50 a 50,50 0 1,1 0,1 z" id="circle" /> -->
+            <path
+              d="M 50,0 a 50,50 0 1,1 -1,0 z"
+              id="circle"
+              fill="none"
+              stroke="none"
+            />
+            <text>
+              <textPath xlink:href="#circle">
+                蛊 解 萃 晋 未 济 渐 涣 讼 颐 革 解 讼 师 豫 乾 讼 井 大 壮 鼎
+              </textPath>
+            </text>
+          </svg>
+          <style>
+            .circular {
+              width: 50vw;
+              height: 50vw;
+              margin: auto;
+              padding: 4vw;
+              background-image: url(./assets/destiny-and-destination.jpg);
+              background-size: contain;
+              background-repeat: no-repeat;
+            }
+            .circular path {
+              fill: none;
+            }
+            .circular svg {
+              display: block;
+              overflow: visible;
+              font-size: 0.75vw;
+              font-family: 隶书;
+            }
+          </style>
+        </div>
       </div>
 
       <div id="quotes">
@@ -99,7 +132,7 @@
           输入并检查答案
         </h4>
         <div class="checker-box">
-          <div class="checker" answer="71=42">
+          <div class="checker" answer="Near the abandon factory window">
             <p
               class="answer-info hv0 inline"
               title="本题没有句点, 且以 '71=' 开头"
@@ -110,29 +143,24 @@
             <div class="button">Check</div>
           </div>
           <p class="answer-notes inline">
-            下一个迷题藏在假山的监控旁, 杆子所在的地下
+            在废弃工厂窗户附近
           </p>
         </div>
 
         <div id="checkers-notes">
           <p>
-            事实上, 这一题的网络版只算是完成了一半, 因为你要在学校中找到 <strong
-            >71=42</strong> 所对应的位置
+            这一题我花了好几天, 试了各种排列组合, 愣是没找到当时的编码方式,
+            一怒之下就用了先天八卦的二进制直接编码了.
+            因此阴阳图周边的文字是重新加上去的.
           </p>
           <p>
-            如果你经常在体育馆乱逛且注意观察的话,
-            会发现在二楼的某个火警报警器的显示器上会闪烁 '71=42' 这个神奇的数字,
-            这也就是我们的目标所在.
+            我翻到了当时编码时参考的易经 (估计是盗版书,里面还有错字),
+            当时编码的时候看的是八宫六十四卦图, 具体对应关系未知, 编码的结果是
+            "否履小畜鼎损丰豫损观谦归妹蒙坤噬嗑随同人临巽井", 编码的内容未知.
+            如果是 Riddolver , 你一定能还原当时的结果吧.
           </p>
           <p>
-            关于这题的动机, 是我看到 71 的外观有些像丙烯, 然后它的分子量恰好又是
-            42, 满足上面闪烁的神奇数字. 于是就凑出了乙烷, 丙烷, 乙烯,
-            乙炔作为题设等式. 如果没有脑洞, 还真不一定能想出来.
-          </p>
-          <p>
-            虽然题目的代号是 'Press bravely', 不过千万不要被它骗了,
-            你只需要打开火警控制器的上盖, 从里面取出一个纸卷,
-            这就是下一道迷题了!
+            这一题唯一的难点就是找到对应的编码方式, 其余都比较直接.
           </p>
         </div>
       </div>
