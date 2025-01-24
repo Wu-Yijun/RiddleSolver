@@ -128,12 +128,22 @@ class TreasureHunterInitial {
             name_suffix[Math.floor(Math.random() * name_suffix.length)];
         } while (used_names.has(name));
         used_names.add(name);
-        let blackboard = text_gen.random_paragraph_mix();
+        let blackboard = text_gen.random_paragraph_mix().replaceAll(
+          /(\d)\d+/g,
+          ([_, s]) => s,
+        );
         if (s !== "C") {
-          const num = parseInt(s);
-          blackboard += this.directions[num].join("") +
-            text_gen.random_paragraph_mix();
+          const num = s === "X" ? this.directions.length - 1 : parseInt(s);
+          console.log(s, num, this.directions[num]);
+          blackboard += " " + this.directions[num].join("") + " ";
+          console.log(blackboard.slice(-8));
+        } else if (Math.random() > 0.5) {
+          blackboard += " " + Math.floor(Math.random() * 100).toString() + " ";
         }
+        blackboard += text_gen.random_paragraph_mix().replaceAll(
+          /(\d)\d+/g,
+          ([_, s]) => s,
+        );
         return {
           front_gate,
           back_gate,
@@ -268,10 +278,14 @@ Deno.test("check answer", () => {
 Deno.test("generate classrooms", () => {
   const code = "23667651890199435457267945381141213966";
   const th = new TreasureHunterInitial([7, 4], code);
+  console.log("pass:", th.run());
+  console.log(th.map_str());
+
   th.gen_classrooms();
-  console.log(
-    th.classrooms.map((x) =>
-      x.map((y) => classroom_str(y).substring(0, 40)).join("\n")
-    ).join("\n\n"),
-  );
+  const strings = th.classrooms.map((x) =>
+    x.map((y) => classroom_str(y)).join("\n")
+  ).join("\n\n");
+  // Deno.writeTextFileSync("./riddles/assets/classrooms.txt", strings);
+
+  // console.log(strings);
 });

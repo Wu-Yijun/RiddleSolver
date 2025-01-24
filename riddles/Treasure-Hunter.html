@@ -27,7 +27,9 @@
         <img
           src="./assets/treasure-hunter.jpg"
           alt="Treasure Hunter"
-          style="min-width: 98%"
+          style="min-width: 98%; cursor: pointer"
+          title="开始游戏"
+          onclick="window.location.href='./Treasure-Hunter-Game.html'"
         >
         <p>
           黑板上会以两位数在的形式给出下一个房间的相对位置. 数字 0 和 5
@@ -49,6 +51,16 @@
             hv1="比如, 可能会有附近的老师和学生发现你, 比如, 栏杆可能不结实掉下去, 比如, 楼梯和地面上布满灰尘和杂物, 比如, 你可能需要从地面爬墙到二楼才能进去"
           >各种意义上</span>) , 请小心谨慎.
         </p>
+      </div>
+      <div class="section">
+        <div
+          class="button"
+          onclick="window.location.href='./Treasure-Hunter-Game.html'"
+        >
+          <p class="centered">
+            开始游戏
+          </p>
+        </div>
       </div>
 
       <div id="quotes">
@@ -76,7 +88,7 @@
           输入并检查答案
         </h4>
         <div class="checker-box">
-          <div class="checker" answer="go to room 608 in office block">
+          <div class="checker" answer="Office block room six zero eight">
             <p class="answer-info hv0 inline" title="本题无句点">
               Answer
             </p>
@@ -95,8 +107,8 @@
             这就需要仔细设计答案和初始教室的位置, 保证不会重复.
           </p>
           <p>
-            具体解密而言, 无非就是第一次没注意到黑板上的数字有特殊含义,
-            要记下来. 基本上第二次走就能记得要抄写了.
+            就解密而言, 无非就是第一次没注意到黑板上的数字有特殊含义, 要记下来.
+            基本上第二次走就能记得要抄写了. 还有就是楼梯不是全部联通的, 比较绕.
           </p>
           <p>
             线下的解密要更复杂一些, 因为真实的地图布局很乱,

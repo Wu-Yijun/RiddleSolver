@@ -36,6 +36,36 @@
         display: none;
         text-align: center;
       }
+      #blackboard {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(0, 70, 0);
+        color: white;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 10px;
+        display: none;
+        text-align: center;
+        width: 80vw;
+        height: 40vh;
+        overflow-y: auto;
+      }
+      #blackboard_text {
+        width: auto;
+        margin: auto;
+      }
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgb(0, 100, 0);
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        background: rgb(0, 70, 0);
+      }
       #menu button {
         margin: 10px;
         padding: 10px 20px;
@@ -79,15 +109,37 @@
       #pop_up_messages > p {
         background-color: rgba(0, 0, 0, 0.4);
         padding: 0px 5px;
-        margin: 2px auto ;
+        margin: 2px auto;
         border-radius: 5px;
         width: 18vw;
         opacity: 1;
         transition: opacity 2.5s ease-in-out;
       }
 
-      span[red]{
+      span[red] {
         color: rgb(255, 149, 149);
+      }
+      span[green] {
+        color: rgb(149, 255, 149);
+      }
+      span[blue] {
+        color: rgb(149, 149, 255);
+      }
+      span[orange] {
+        color: rgb(255, 218, 149);
+      }
+
+      button {
+        /* transition: color 0.3s ease-out; */
+      }
+      button.interact {
+        color: rgb(8, 182, 25);
+        font-weight: bold;
+      }
+      button.pressed {
+        /* background-color: rgb(215, 215, 215); */
+        color: rgb(8, 106, 182);
+        font-weight: bold;
       }
     </style>
     <div class="resource hide" style="visibility: gone">
@@ -111,16 +163,25 @@
     <canvas id="gameCanvas"></canvas>
 
     <div id="menu">
-      <h2>Game Menu</h2>
-      <button id="restartButton">Restart</button>
-      <button id="homeButton">Home</button>
+      <h2>游戏菜单</h2>
+      <button id="restartButton">重新开始</button>
+      <button id="finalButton" style="display: none">
+        <span style="color: darkgreen; text-shadow: greenyellow 0px 0px 2px"
+        >查看线索</span>
+      </button>
+      <button id="homeButton">退出游戏</button>
+    </div>
+    <div id="blackboard">
+      <h2 style="padding: 0; margin: 0">黑板</h2>
+      <p id="blackboard_text"></p>
     </div>
 
     <div class="control-buttons">
-      <button id="upButton"><span>上楼</span></button>
-      <button id="downButton"><span>下楼</span></button>
-      <button id="leftButton"><span>向左</span></button>
-      <button id="rightButton"><span>向右</span></button>
+      <button id="leftButton" class=""><span>向左</span></button>
+      <button id="rightButton" class=""><span>向右</span></button>
+      <button id="upButton"><span>向上</span></button>
+      <button id="downButton"><span>向下</span></button>
+      <button id="interactButton" class="interact"><span>交互</span></button>
     </div>
 
     <div id="pop_up_messages">
