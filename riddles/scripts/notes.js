@@ -1,4 +1,32 @@
-
+function init_lists() {
+  function get_links() {
+    try {
+      return Array.from(JSON.parse(localStorage.getItem("Riddolver-links")));
+    } catch (e) {
+      console.warn(e);
+      console.warn("Use empty list instead.");
+    }
+    return [];
+  }
+  function add_link(from, to) {
+    const links = get_links();
+    if (links.some(([f, t]) => f === from && t === to)) {
+      return;
+    }
+    links.push([from, to]);
+    localStorage.setItem("Riddolver-links", JSON.stringify(links));
+    console.log(`Added link from ${from} to ${to}.`);
+  }
+  // const links = [];
+  globalThis.add_link = function (from, ...to) {
+    for (const t of to) {
+      add_link(String(from).padStart(2, "0"), String(t).padStart(2, "0"));
+    }
+  };
+  globalThis.get_links = get_links;
+  console.log("list functions loaded");
+}
+init_lists();
 
 function main() {
   const hv1s = document.getElementsByClassName("hv1");
@@ -15,7 +43,7 @@ function main() {
     const windowHeight = globalThis.innerHeight + globalThis.scrollY;
     if (mouseY + 10 + infoBoxHeight > windowHeight) {
       infoBox.style.top = `${windowHeight - infoBoxHeight - 10}px`; // 向上移动
-    }else{
+    } else {
       infoBox.style.top = `${mouseY + 10}px`; // 鼠标下方 10px
     }
     // 设置文本框位置

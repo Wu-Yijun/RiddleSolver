@@ -69,6 +69,7 @@ function main() {
     if (config.offset < config.height) {
       requestAnimationFrame(update);
     } else {
+      globalThis.add_link(100, 100);
       setTimeout(() => {
         globalThis.location.href = "./list.html";
       }, 2000);

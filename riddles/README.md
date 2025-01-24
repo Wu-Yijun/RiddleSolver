@@ -4,52 +4,20 @@
 
 
 ```
-         000
-        /   \
-       |     |
-       V     V
-      002   001
-     /     /   \
-    |     |     |
-    V     V     V
-   016   015   012
-  /     /     /   \
- |     |     |     |
- |     V     V     V 
- |    023   022   024
- |       \ /       |
- |        |        |
- |        V        |
- |       035       |
- |      /   \      |
- |     |     |     |
- V     V     |     |
-044    048   |     |
-   \ /       |     |
-    |        |    /
-    V        |   /
-   054       |  /
-  /   \      | /
- |     |     |/
- |     V     /
- |    065   /|
- |       \ / | 
- |        |  |
- |        V  |
- |       076 |
- |      /    |
- |     |     |
- V     V     V
-089   087   088
-   \   |   /
-    \  |  /
-     \ | /
-      \|/
-       V
-      099
+00----20----40----------80
+|     |     |           |
+|     22----42          |
+03    |     |           |
+|     24----44----64    |
+|           |     |     |
+06-------36-+-----66----+-----96
+            |     |     |     |
+            |     68----88,89 |
+            |                \|
+            49----------------99,100
 ```
 
-下面是网页列表
+序号所对应的网页列表:
 
 - 00: [Invitation](./Invitation.html)
 - 00: [Letter to Riddolver](./Letter-to-Riddolver.html)
@@ -68,6 +36,7 @@
 - 68: [Ways](./Ways.html)
 - 80: [WiFi Password](./WiFi-Password.html)
 - 88: [Life for Riddle](./Life-for-Riddle.html)
-- [ ] 89: [Treasure Hunter](./Treasure-Hunter.html)
+- 89: [Treasure Hunter](./Treasure-Hunter.html)
 - 96: [Truth False & Myth](./Truth-False-and-Myth.html)
-- [ ] 99: [Final Letter](./Final-Letter.html)
+- 99: [Final Letter](./Final-Letter.html)
+- 100: [Credits](./Credits.html)

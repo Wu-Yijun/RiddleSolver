@@ -121,6 +121,13 @@ function get_accuracy(source, target) {
 }
 
 function unlock_riddle(riddle_button) {
+  const next_id = parseInt(riddle_button.getAttribute("riddle")) ||
+    parseInt(riddle_button.innerText);
+  if (next_id) {
+    console.log("Unlock riddle:", Id, next_id);
+    globalThis.add_link(Id, next_id);
+  }
+
   riddle_button.classList.add("clickable");
   const next_riddle = riddle_button.getAttribute("riddle");
   riddle_button.onclick = () => {

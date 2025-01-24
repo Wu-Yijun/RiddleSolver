@@ -1,0 +1,189 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#graph {
+  padding: 0;
+  margin: 0;
+  position: relative;
+  background: white;
+  width: 100vw;
+  height: 60vw;
+  user-select: none;
+}
+
+.node {
+  position: absolute;
+  width: 4vw;
+  height: 4vw;
+  background-color: #5db8cf;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: darkgreen 1px solid;
+  box-shadow: black 0px 0px 5px;
+  cursor: pointer;
+  font-size: 2vw;
+  opacity: 1;
+  transition: all 0.5s;
+  z-index: 10;
+}
+.node.finished {
+  background-color: rgb(8 175 26);
+}
+.node:hover {
+  scale: 1.2;
+  box-shadow: black 0px 0px 10px;
+  z-index: 20;
+  opacity: 0.9;
+}
+
+.edge {
+  position: absolute;
+  width: 2px;
+  background-color: black;
+  transform-origin: top left;
+  transition: all 0.5s;
+}
+
+#info-box {
+  min-width: 250px;
+  height: 150px;
+  background-color: #fef4e0;
+  position: absolute;
+  z-index: 100;
+  opacity: 0;
+  /* opacity: 0.8; */
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: gray 0px 0px 10px;
+  font-size: 20px;
+  cursor: none;
+  user-select: none;
+  pointer-events: none;
+  transition: all 0.5s;
+}
+#info-box > p {
+  margin: 0 20px;
+}
+#info-id {
+  font-weight: bold;
+}
+#info-state {
+  font-style: italic;
+  font-weight: bold;
+  color: rgb(223, 147, 6);
+  text-shadow: orange 0px 0px 1px;
+}
+#info-state.finished {
+  font-style: italic;
+  color: green;
+  text-shadow: green 0px 0px 1px;
+}
+
+#title {
+  font-size: 50px;
+  text-align: center;
+}
+
+#list {
+  text-align: center;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+table {
+  margin: auto;
+  border-collapse: collapse;
+  /* width: 50%; */
+  font-size: 20px;
+  text-align: center;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-family:
+    "Arial",
+    Times,
+    serif,
+    "Segoe UI",
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
+}
+th, td {
+  border: 1px solid #6d6d6d;
+  padding: 8px;
+}
+th {
+  background-color: #ccc;
+  font-weight: bold;
+}
+tr > th:first-child {
+  background-color: #aaa;
+}
+td {
+  background-color: #fff;
+  min-width: 50px;
+  transition: all 0.3s;
+}
+tr > td:first-child {
+  background-color: #ddd;
+}
+
+tr.finished {
+  color: darkgreen;
+}
+/* tr.finished > td {
+  background-color: #efe;
+} */
+tr.finished > td:first-child {
+  background-color: rgb(160, 238, 160);
+}
+tr.unfinished > td:first-child {
+  background-color: rgb(255, 234, 149);
+}
+tr.not-started > td:first-child {
+  background-color: rgb(239, 239, 239);
+}
+tr.not-started {
+  color: #bbb;
+}
+td.finished {
+  background-color: #efe;
+  color: darkgreen;
+}
+tr.unfinished > td.unfinished {
+  background-color: rgb(255, 251, 236);
+  color: rgb(214, 124, 34);
+}
+
+tr:hover > td {
+  background-color: #eefdff;
+}
+tr > td:nth-child(2) {
+  cursor: pointer;
+}
+tr > td:nth-child(2):hover {
+  /* background-color: #eefdff; */
+  text-decoration: underline;
+}
