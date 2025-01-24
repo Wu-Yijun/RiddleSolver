@@ -1,0 +1,215 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+#main {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+#scrolling {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 5vh;
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+  /* overflow-y: visible;
+  height: 100vh; */
+  /* transition: transform 0.1s;
+  transform: translateY(0px); */
+}
+id {
+  display: none;
+}
+.appendix {
+  margin-top: 40vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 25px;
+}
+
+.head {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 60px;
+  /* font-weight: bold; */
+}
+
+.divider {
+  width: 80%;
+  height: 1px;
+  background-color: #000;
+}
+
+.credit-title {
+  margin-top: 20vh;
+  font-family: "华文彩云";
+  font-size: 50px;
+}
+.credit-name {
+  font-family: "楷体";
+  font-size: 40px;
+}
+.credit-group {
+  font-family:
+    "Arial",
+    "微软雅黑",
+    "YaHei",
+    "Microsoft YaHei",
+    "黑体",
+    "SimHei",
+    "STHeiti",
+    "华文黑体",
+    "sans-serif";
+  font-size: 40px;
+}
+
+#acknowledgement {
+  margin-top: 20vh;
+  font-family: "华文行楷";
+  font-size: 50px;
+}
+
+#scrolling > p {
+  max-width: 70%;
+  font-size: 30px;
+  text-align: center;
+  font-family: "宋体", "SimSun", "STSong", "华文宋体", "sans-serif";
+}
+.credit-group > p {
+  font-size: 30px;
+  text-align: center;
+}
+.title {
+  font-size: 30px;
+  margin: 10px;
+}
+table {
+  font-family: "宋体", "SimSun", "STSong", "华文宋体", "sans-serif";
+  font-size: 20px;
+  border-collapse: collapse;
+  /* width: 80vw; */
+  max-width: 80vw;
+}
+
+th, td {
+  border: 1px solid #6d6d6d;
+  /* padding: 8px; */
+  padding-inline: 5px;
+}
+th {
+  /* background-color: #ccc; */
+  font-weight: bold;
+}
+tr > th:first-child {
+  /* background-color: #aaa; */
+}
+td {
+  /* background-color: #fff; */
+  min-width: 50px;
+}
+tr > td:first-child {
+  /* background-color: #ddd; */
+  text-align: center;
+}
+
+.region {
+  font-size: 25px;
+  margin: 10px;
+  border: #6d6d6d solid 1px;
+  padding: 10px;
+  border-radius: 10px;
+  max-width: 400px;
+  /* text-align: center; */
+}
+.region > div {
+  text-align: center;
+}
+.region > p {
+  text-indent: 2em;
+}
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-around;
+  row-gap: 1em;
+}
+
+#contact p {
+  margin-left: 2em;
+}
+
+#signature {
+  font-family: "华文行楷";
+  font-size: 100px;
+}
+
+#info {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  text-align: center;
+  /* text-align: right; */
+  font-family:
+    "Microsoft YaHei",
+    "Heiti SC",
+    "PingFang SC",
+    Helvetica,
+    Tahoma,
+    Arial,
+    "Hiragino Sans GB",
+    "WenQuanYi Micro Hei",
+    sans-serif;
+  color: #6d6d6d;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  background-color: #eeee;
+  border-radius: 10px;
+  
+  pointer-events: none;
+  cursor: none;
+  user-select: none;
+}
+#info>div{
+  margin: 10px;
+}
+span[boxed] {
+  border: #6d6d6d 1px solid;
+  border-radius: 4px;
+  padding-inline: 2px;
+}
+
+.final {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 40px;
+  font-family:'Times New Roman', Times, serif;
+  /* font-weight: lighter; */
+  height: 2px;
+  background-color: #6d6d6d;
+  color: #6d6d6d;
+  width: 500px;
+}
+.final::before{
+  content: '<<<';
+}
+.final::after{
+  content: '>>>';
+}
