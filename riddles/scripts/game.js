@@ -92,16 +92,16 @@ function main(classrooms = ClassroomInfo.fromStrArr2([[]])) {
         ".": "#fff",
     };
     const gameMap = `
-#####################
-####CSCCCCSCC########
-#####S###############
-###CCSCCCCSCCCS######
-##S###########S######
-#CSCCSCCCC#CCCS#CSC##
-##S##S####S###S##S###
-#CSCCSCCCCSCCCS.CSCC#
-#####S####S##########
-#####################
+######################
+####CSCCCCSCC#########
+#####S################
+###CCSCCCCSCCCS#######
+##S###########S#######
+#CSCCSCCCC#CCCS#CSCC##
+##S##S####S###S##S####
+#CSCCSCCCCSCCCS.CSCCC#
+#####S####S###########
+######################
 `.trim().split("\n");
 
     const FINAL_CLASSROOMS = 19;
@@ -865,6 +865,7 @@ function main(classrooms = ClassroomInfo.fromStrArr2([[]])) {
             }
             blackboard_dom.style.display = "block";
             blackboard_text.innerHTML = gameState.classroom.blackboard;
+            see_blackboard();
             gameState.blackboard_hide = setTimeout(() => {
                 gameState.blackboard_hide = null;
                 blackboard_dom.style.display = "none";
