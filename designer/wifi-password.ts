@@ -1,7 +1,7 @@
 import { NiseCode } from "./nise-code.ts";
 import { ArrayDecoder } from "./array.ts";
 
-Deno.test("wifi password", () => {
+Deno.test("WiFi Password", () => {
   const nise = new NiseCode();
   const decoder = new ArrayDecoder();
   decoder.read_words(1);
